@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ignori"
+version = "0.1.0"
+description = ""
+authors = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+textual = "^0.58.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
