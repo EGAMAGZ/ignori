@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 #path-container{
     & #path-input{
         width: 1fr;
@@ -8,7 +12,7 @@
     }
 }
 
-Placeholder{
+FilePreview{
     width: 50%;
 }
 
@@ -24,6 +28,8 @@ Vertical {
 
 #search-container{
     height: auto;
+    padding: 1;
+
     & Input{
         width: 1fr;
     }

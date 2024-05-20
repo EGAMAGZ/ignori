@@ -5,9 +5,10 @@ from textual import on
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container, Horizontal, Vertical
-from textual.widgets import Button, Footer, Header, Input, OptionList, Placeholder
+from textual.widgets import Button, Footer, Header, Input, OptionList
 
 from ignori.util.settings import APP_TITLE, STYLES_PATH
+from ignori.widgets.file_preview import FilePreview
 
 
 class IgnoriApp(App):
@@ -39,7 +40,7 @@ class IgnoriApp(App):
                     yield Button("Search")
                 with Horizontal():
                     yield OptionList(*[f"Option {position}" for position in range(20)])
-                    yield Placeholder()
+                    yield FilePreview("sample\ncode\nsampl\n" * 15)
 
             with Horizontal(id="path-container"):
                 yield Input(
