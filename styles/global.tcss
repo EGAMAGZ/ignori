@@ -1,0 +1,9 @@
+#path-container{
+    & #path-input{
+        width: 1fr
+    }
+
+    & #path-button{
+        width: auto
+    }
+}
