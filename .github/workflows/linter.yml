@@ -1,4 +1,4 @@
-name: Linting
+name: Linting and type checking
 
 on:
   - push
@@ -24,3 +24,5 @@ jobs:
           poetry install
       - name: Linting
         run: poetry run ruff check
+      - name: Type checking
+        run: poetry run mypy ignori
