@@ -39,6 +39,7 @@ select = [
     "SLF",
     "SIM",
     "PTH",
+    "I",
 ]
 ignore = []
 
