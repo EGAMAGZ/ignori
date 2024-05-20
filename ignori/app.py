@@ -3,9 +3,9 @@ from typing import Self
 
 from textual import on
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer, Button, Input
-from textual.containers import Horizontal
 from textual.binding import Binding
+from textual.containers import Container, Horizontal, Vertical
+from textual.widgets import Button, Footer, Header, Input, OptionList, Placeholder
 
 from ignori.util.settings import APP_TITLE, STYLES_PATH
 
@@ -23,6 +23,7 @@ class IgnoriApp(App):
         if not path.exists():
             self.notify("Path does not exist", severity="error")
             return
+
         if not path.is_dir():
             self.notify("Path is not a directory", severity="error")
             return
@@ -31,11 +32,20 @@ class IgnoriApp(App):
 
     def compose(self: Self) -> ComposeResult:
         yield Header()
-        with Horizontal(id="path-container"):
-            yield Input(
-                id="path-input",
-                placeholder=f"{Path.cwd()}",
-                type="text",
-            )
-            yield Button("Generate", id="path-button")
+        with Vertical():
+            with Container():
+                with Horizontal(id="search-container"):
+                    yield Input(placeholder="Search...", type="text")
+                    yield Button("Search")
+                with Horizontal():
+                    yield OptionList(*[f"Option {position}" for position in range(20)])
+                    yield Placeholder()
+
+            with Horizontal(id="path-container"):
+                yield Input(
+                    id="path-input",
+                    placeholder=f"{Path.cwd()}",
+                    type="text",
+                )
+                yield Button("Generate", id="path-button")
         yield Footer()

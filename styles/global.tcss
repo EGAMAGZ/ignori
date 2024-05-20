@@ -1,9 +1,34 @@
 #path-container{
     & #path-input{
-        width: 1fr
+        width: 1fr;
     }
 
     & #path-button{
-        width: auto
+        width: auto;
+    }
+}
+
+Placeholder{
+    width: 50%;
+}
+
+Vertical {
+    & Container{
+        height: 1fr;
+    }
+
+    & #path-container{
+        height: auto;
+    }
+}
+
+#search-container{
+    height: auto;
+    & Input{
+        width: 1fr;
+    }
+
+    & Button{
+        width: auto;
     }
 }
