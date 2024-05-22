@@ -2,12 +2,12 @@ from typing import Self
 
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Container, Horizontal, Vertical
-from textual.widgets import Button, Footer, Header, Input, OptionList
+from textual.containers import Vertical
+from textual.widgets import Footer, Header
 
 from ignori.util.settings import APP_TITLE, STYLES_PATH
-from ignori.widgets.file_preview import FilePreview
 from ignori.widgets.generation_form import GenerationForm
+from ignori.widgets.search_form import SearchForm
 
 
 class IgnoriApp(App):
@@ -18,14 +18,7 @@ class IgnoriApp(App):
 
     def compose(self: Self) -> ComposeResult:
         yield Header()
-        with Vertical():
-            with Container():
-                with Horizontal(id="search-container"):
-                    yield Input(placeholder="Search...", type="text")
-                    yield Button("Search")
-                with Horizontal():
-                    yield OptionList(*[f"Option {position}" for position in range(20)])
-                    yield FilePreview("sample\ncode\nsampl\n" * 15)
-
+        with Vertical(id="container"):
+            yield SearchForm()
             yield GenerationForm()
         yield Footer()

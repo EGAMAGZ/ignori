@@ -13,6 +13,7 @@ class GenerationForm(Widget):
     DEFAULT_CSS = """
     GenerationForm{
         & #path-container{
+            height: auto;
             & #path-input{
                 width: 1fr;
             }

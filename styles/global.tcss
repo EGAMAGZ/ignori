@@ -2,33 +2,12 @@
     box-sizing: border-box;
 }
 
-GenerationForm{
-    height: auto;
-}
-
-FilePreview{
-    width: 50%;
-}
-
-Vertical {
-    & Container{
+#container {
+    & SearchForm{
         height: 1fr;
     }
 
-    & #path-container{
+    & GenerationForm{
         height: auto;
-    }
-}
-
-#search-container{
-    height: auto;
-    padding: 1;
-
-    & Input{
-        width: 1fr;
-    }
-
-    & Button{
-        width: auto;
     }
 }
