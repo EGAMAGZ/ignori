@@ -2,14 +2,8 @@
     box-sizing: border-box;
 }
 
-#path-container{
-    & #path-input{
-        width: 1fr;
-    }
-
-    & #path-button{
-        width: auto;
-    }
+GenerationForm{
+    height: auto;
 }
 
 FilePreview{

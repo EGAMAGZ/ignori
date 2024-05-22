@@ -26,6 +26,7 @@ class FilePreview(Widget):
         self.code = code
 
     def on_mount(self: Self) -> None:
+        # TODO: Change for Syntaz.from_path()
         self.query_one("#preview", expect_type=Static).update(
             Syntax(self.code, "plain", line_numbers=True, word_wrap=False),
         )
