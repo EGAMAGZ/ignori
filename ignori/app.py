@@ -14,7 +14,9 @@ class IgnoriApp(App):
     TITLE = APP_TITLE
     CSS_PATH = str(STYLES_PATH / "global.tcss")
 
-    BINDINGS = [Binding(key="d", action="toggle_dark", description="Toggle Dark Mode")]
+    BINDINGS = [
+        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
+    ]
 
     def compose(self: Self) -> ComposeResult:
         yield Header()

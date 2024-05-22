@@ -13,22 +13,23 @@ class SearchForm(Widget):
     DEFAULT_CSS = """
     SearchForm{
         width: 100%;
-
-        & OptionList{
-            width: 1fr;
-        }
-        & FilePreview{
-            width: 1fr !important;
+        & #ignore-container{
+            & #ignore-list{
+                width: 1fr;
+            }
+            & #ignore-code{
+                width: 1fr !important;
+            }
         }
 
         & #search-container{
             height: auto;
 
-            & Input{
+            & #search-input {
                 width: 1fr;
             }
 
-            & Button{
+            & #search-button {
                 width: auto;
             }
         }
@@ -38,8 +39,11 @@ class SearchForm(Widget):
     def compose(self: Self) -> ComposeResult:
         with Container():
             with Horizontal(id="search-container"):
-                yield Input(placeholder="Search...", type="text")
-                yield Button("Search")
-            with Horizontal():
-                yield OptionList(*[f"Option {position}" for position in range(20)])
-                yield FilePreview("sample\ncode\nsampl\n" * 15)
+                yield Input(placeholder="Search...", type="text", id="search-input")
+                yield Button("Search", id="search-button")
+            with Horizontal(id="ignore-container"):
+                yield OptionList(
+                    *[f"Option {position}" for position in range(20)],
+                    id="ignore-list",
+                )
+                yield FilePreview("sample\ncode\nsampl\n" * 15, _id="ignore-code")

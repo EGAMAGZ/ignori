@@ -21,8 +21,8 @@ class FilePreview(Widget):
     }
     """
 
-    def __init__(self: "FilePreview", code: str) -> None:
-        super().__init__()
+    def __init__(self: "FilePreview", code: str, _id: str) -> None:
+        super().__init__(id=_id)
         self.code = code
 
     def on_mount(self: Self) -> None:
