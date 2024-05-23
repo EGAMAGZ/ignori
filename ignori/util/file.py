@@ -2,7 +2,7 @@ from ignori.ignore_file import IgnoreFile
 from ignori.util.settings import TEMPLATES_PATH
 
 
-def search_files_by_name(template_name: str | None = None) -> list[IgnoreFile]:
+def search_files_by_name(template_name: str = "") -> list[IgnoreFile]:
     template_files = [
         IgnoreFile(file)
         for file in TEMPLATES_PATH.iterdir()

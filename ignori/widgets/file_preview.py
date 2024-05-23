@@ -3,8 +3,11 @@ from typing import Self
 from rich.syntax import Syntax
 from textual.app import ComposeResult
 from textual.containers import Container, VerticalScroll
+from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Label, Static
+
+from ignori.ignore_file import IgnoreFile
 
 
 class FilePreview(Widget):
@@ -21,15 +24,20 @@ class FilePreview(Widget):
     }
     """
 
-    def __init__(self: "FilePreview", code: str, _id: str) -> None:
-        super().__init__(id=_id)
-        self.code = code
+    selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
-    def on_mount(self: Self) -> None:
-        # TODO: Change for Syntaz.from_path()
-        self.query_one("#preview", expect_type=Static).update(
-            Syntax(self.code, "plain", line_numbers=True, word_wrap=False),
-        )
+    def __init__(self: "FilePreview", _id: str) -> None:
+        super().__init__(id=_id)
+
+    def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
+        if ignore_file is not None:
+            self.query_one("#preview", expect_type=Static).update(
+                Syntax.from_path(
+                    str(ignore_file.path),
+                    line_numbers=True,
+                    word_wrap=True,
+                ),
+            )
 
     def compose(self: Self) -> ComposeResult:
         with Container():
