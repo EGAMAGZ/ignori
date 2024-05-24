@@ -13,6 +13,17 @@ from ignori.util.file import search_files_by_name
 from ignori.widgets.file_preview import FilePreview
 
 
+def get_option_by_id(
+    ignore_files: list[IgnoreFile],
+    option_id: str,
+) -> IgnoreFile | None:
+    selected_file = next(
+        (file for file in ignore_files if file.id == option_id),
+        None,
+    )
+    return selected_file
+
+
 class SearchForm(Widget):
 
     DEFAULT_CSS = """
@@ -57,22 +68,15 @@ class SearchForm(Widget):
     @on(OptionList.OptionHighlighted, selector="#ignore-list")
     def show_file_content(self: Self, event: OptionList.OptionHighlighted) -> None:
         if event.option_id is not None:
-            highligted_file = next(
-                (file for file in self.ignore_files if file.id == event.option_id),
-                None,
-            )
+            highligted_file = get_option_by_id(self.ignore_files, event.option_id)
 
             if highligted_file:
                 self.highlighted_ignore_file = highligted_file
-                print(highligted_file)
 
     @on(OptionList.OptionSelected, selector="#ignore-list")
     def select_file(self: Self, event: OptionList.OptionSelected) -> None:
         if event.option_id is not None:
-            selected_file = next(
-                (file for file in self.ignore_files if file.id == event.option_id),
-                None,
-            )
+            selected_file = get_option_by_id(self.ignore_files, event.option_id)
 
             if selected_file:
                 self.selected_ignore_file = selected_file
