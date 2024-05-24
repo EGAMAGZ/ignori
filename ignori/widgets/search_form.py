@@ -46,6 +46,8 @@ class SearchForm(Widget):
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
+    highlighted_ignore_file: reactive[IgnoreFile | None] = reactive(None)
+
     @on(Button.Pressed, selector="#search-button")
     def search_ignore_file(self: Self, event: Button.Pressed) -> None:
         path_input = self.query_one(selector="#search-input", expect_type=Input)
@@ -54,16 +56,27 @@ class SearchForm(Widget):
 
     @on(OptionList.OptionHighlighted, selector="#ignore-list")
     def show_file_content(self: Self, event: OptionList.OptionHighlighted) -> None:
-        pass
+        if event.option_id is not None:
+            highligted_file = next(
+                (file for file in self.ignore_files if file.id == event.option_id),
+                None,
+            )
+
+            if highligted_file:
+                self.highlighted_ignore_file = highligted_file
+                print(highligted_file)
 
     @on(OptionList.OptionSelected, selector="#ignore-list")
     def select_file(self: Self, event: OptionList.OptionSelected) -> None:
         if event.option_id is not None:
-            ignore_file = list(
-                filter(lambda file: file.id == event.option_id, self.ignore_files),
-            )[0]
-            self.selected_ignore_file = ignore_file
-            self.notify(ignore_file.language)
+            selected_file = next(
+                (file for file in self.ignore_files if file.id == event.option_id),
+                None,
+            )
+
+            if selected_file:
+                self.selected_ignore_file = selected_file
+                self.notify(f"{selected_file.language} selected")
 
     def watch_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
         ignore_list = self.query_one("#ignore-list", expect_type=OptionList)
@@ -86,5 +99,5 @@ class SearchForm(Widget):
                     id="ignore-list",
                 )
                 yield FilePreview(_id="ignore-code").data_bind(
-                    SearchForm.selected_ignore_file,
+                    SearchForm.highlighted_ignore_file,
                 )

@@ -25,10 +25,6 @@ class GenerationForm(Widget):
     }
     """
 
-    def __init__(self: "GenerationForm") -> None:
-        super().__init__()
-        self.log("ASD")
-
     @on(Button.Pressed, selector="#path-button")
     def generate_file(self: Self, event: Button.Pressed) -> None:
         path_input = self.query_one(selector="#path-input", expect_type=Input)

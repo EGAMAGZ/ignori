@@ -24,12 +24,14 @@ class FilePreview(Widget):
     }
     """
 
-    selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
+    highlighted_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
     def __init__(self: "FilePreview", _id: str) -> None:
         super().__init__(id=_id)
 
-    def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
+    def watch_highlighted_ignore_file(
+        self: Self, ignore_file: IgnoreFile | None,
+    ) -> None:
         if ignore_file is not None:
             self.query_one("#preview", expect_type=Static).update(
                 Syntax.from_path(
