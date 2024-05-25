@@ -30,9 +30,11 @@ class FilePreview(Widget):
         super().__init__(id=_id)
 
     def watch_highlighted_ignore_file(
-        self: Self, ignore_file: IgnoreFile | None,
+        self: Self,
+        ignore_file: IgnoreFile | None,
     ) -> None:
         if ignore_file is not None:
+            self.query_one(VerticalScroll).scroll_home(animate=False)
             self.query_one("#preview", expect_type=Static).update(
                 Syntax.from_path(
                     str(ignore_file.path),
