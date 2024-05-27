@@ -3,16 +3,24 @@ from typing import Self
 
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import Horizontal
+from textual.containers import Container, Horizontal
+from textual.reactive import reactive
 from textual.widget import Widget
-from textual.widgets import Button, Input
+from textual.widgets import Button, Input, Label
+
+from ignori.ignore_file import IgnoreFile
+from ignori.util.validators import PathValidator
 
 
 class GenerationForm(Widget):
 
     DEFAULT_CSS = """
-    GenerationForm{
-        & #path-container{
+    GenerationForm {
+        & #path-container {
+            height: auto;
+        }
+
+        & #path-form-container{
             height: auto;
             & #path-input{
                 width: 1fr;
@@ -24,6 +32,13 @@ class GenerationForm(Widget):
         }
     }
     """
+
+    selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
+
+    def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
+        if ignore_file:
+            label = self.query_one("#path-label", expect_type=Label)
+            label.update("Language: " + ignore_file.language)
 
     @on(Button.Pressed, selector="#path-button")
     def generate_file(self: Self, event: Button.Pressed) -> None:
@@ -40,10 +55,18 @@ class GenerationForm(Widget):
         self.notify(f"Path: {path}")
 
     def compose(self: Self) -> ComposeResult:
-        with Horizontal(id="path-container"):
-            yield Input(
-                id="path-input",
-                placeholder=f"{Path.cwd()}",
-                type="text",
+        with Container(id="path-container"):
+            yield Label(
+                "Path",
+                id="path-label",
             )
-            yield Button("Generate", id="path-button")
+            with Horizontal(id="path-form-container"):
+                yield Input(
+                    id="path-input",
+                    placeholder=f"{Path.cwd()}",
+                    type="text",
+                    validators=[
+                        PathValidator(),
+                    ],
+                )
+                yield Button("Generate", id="path-button")

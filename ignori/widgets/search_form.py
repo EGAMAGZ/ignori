@@ -3,6 +3,7 @@ from typing import Self
 from textual import on
 from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
+from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Button, Input, OptionList
@@ -53,9 +54,15 @@ class SearchForm(Widget):
     }
     """
 
-    ignore_files: reactive[list[IgnoreFile]] = reactive(search_files_by_name())
+    class Selected(Message):
+        def __init__(
+            self: "SearchForm.Selected",
+            selected_file: IgnoreFile | None,
+        ) -> None:
+            self.selected_file = selected_file
+            super().__init__()
 
-    selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
+    ignore_files: reactive[list[IgnoreFile]] = reactive(search_files_by_name())
 
     highlighted_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
@@ -79,7 +86,7 @@ class SearchForm(Widget):
             selected_file = get_option_by_id(self.ignore_files, event.option_id)
 
             if selected_file:
-                self.selected_ignore_file = selected_file
+                self.post_message(self.Selected(selected_file))
                 self.notify(f"{selected_file.language} selected")
 
     def watch_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
