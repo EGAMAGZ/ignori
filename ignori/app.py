@@ -29,7 +29,7 @@ class IgnoriApp(App):
 
     @on(GenerationForm.Generated)
     def generated_file(self: Self, event: GenerationForm.Generated) -> None:
-        self.selected_ignore_file = event.selected_file
+        self.selected_ignore_file = None
 
     def compose(self: Self) -> ComposeResult:
         yield Header()

@@ -36,9 +36,7 @@ class GenerationForm(Widget):
     """
 
     class Generated(Message):
-        def __init__(self: "GenerationForm.Generated") -> None:
-            self.selected_file = None
-            super().__init__()
+        pass
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
