@@ -9,6 +9,7 @@ from textual.widget import Widget
 from textual.widgets import Button, Input, Label
 
 from ignori.ignore_file import IgnoreFile
+from ignori.util.file import copy_file_content
 from ignori.util.validators import PathValidator
 
 
@@ -43,6 +44,7 @@ class GenerationForm(Widget):
     @on(Button.Pressed, selector="#path-button")
     def generate_file(self: Self, event: Button.Pressed) -> None:
         path_input = self.query_one(selector="#path-input", expect_type=Input)
+
         path = Path(path_input.value)
         if not path.exists():
             self.notify("Path does not exist", severity="error")
@@ -52,12 +54,22 @@ class GenerationForm(Widget):
             self.notify("Path is not a directory", severity="error")
             return
 
-        self.notify(f"Path: {path}")
+        if self.selected_ignore_file:
+            copy_file_content(self.selected_ignore_file.path, path)
+
+            self.notify("File generated successfully")
+            self.reset_form()
+
+    def reset_form(self: Self) -> None:
+        self.query_one(selector="#path-input", expect_type=Input).clear()
+        self.query_one(selector="#path-label", expect_type=Label).update(
+            "No language selected",
+        )
 
     def compose(self: Self) -> ComposeResult:
         with Container(id="path-container"):
             yield Label(
-                "Path",
+                "No language selected",
                 id="path-label",
             )
             with Horizontal(id="path-form-container"):

@@ -14,9 +14,12 @@ def search_files_by_name(template_name: str = "") -> list[IgnoreFile]:
     return sorted(template_files, key=lambda file: file.language)
 
 
-def copy_file_content(source_file: Path, destination_file: Path) -> None:
-    with Path.open(source_file) as source, Path.open(
-        destination_file,
-        "w",
-    ) as destination:
+def copy_file_content(
+    source_file: Path,
+    destination_path: Path,
+    file_name: str = ".gitignore",
+) -> None:
+    destination_file = destination_path / file_name
+
+    with source_file.open("r") as source, destination_file.open("w") as destination:
         destination.write(source.read())
