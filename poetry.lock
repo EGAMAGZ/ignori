@@ -570,6 +570,17 @@ files = [
 ]
 
 [[package]]
+name = "pipe"
+version = "2.2"
+description = "Module enabling a sh like infix syntax (using pipes)"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pipe-2.2-py3-none-any.whl", hash = "sha256:0a5c3202ff35122f69a34ccbd40c9658646f033cc941055304fe8bfa7e13376e"},
+    {file = "pipe-2.2.tar.gz", hash = "sha256:6a253198e3bc542ffaf0a4222376586bce8583b27a9ddbc2cfbaa554c049230d"},
+]
+
+[[package]]
 name = "pluggy"
 version = "1.5.0"
 description = "plugin and hook calling mechanisms for python"
@@ -830,4 +841,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "fdc58b9244f2080edb482b62dabd90632ca43259c28b2c5b2e35c7379650303a"
+content-hash = "1e40fa6e89250d6fab449c55123e41e6c633915d7d5976c619a8408760f2242f"
