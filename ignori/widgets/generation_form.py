@@ -4,6 +4,7 @@ from typing import Self
 from textual import on
 from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
+from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Button, Input, Label
@@ -34,6 +35,11 @@ class GenerationForm(Widget):
     }
     """
 
+    class Generated(Message):
+        def __init__(self: "GenerationForm.Generated") -> None:
+            self.selected_file = None
+            super().__init__()
+
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
     def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
@@ -49,10 +55,10 @@ class GenerationForm(Widget):
     @on(Button.Pressed, selector="#path-button")
     def generate_file(self: Self) -> None:
         input_field = self.query_one("#path-input", expect_type=Input)
-
-        if not input_field.is_valid:
+        result = input_field.validate(input_field.value)
+        if not input_field.is_valid and result:
             self.notify(
-                "Path does not exist or is not a directory",
+                "".join(result.failure_descriptions),
                 title="Error",
                 severity="error",
             )
@@ -72,9 +78,7 @@ class GenerationForm(Widget):
 
     def reset_form(self: Self) -> None:
         self.query_one(selector="#path-input", expect_type=Input).clear()
-        self.query_one(selector="#path-label", expect_type=Label).update(
-            "No language selected",
-        )
+        self.post_message(self.Generated())
 
     def compose(self: Self) -> ComposeResult:
         with Container(id="path-container"):

@@ -27,6 +27,10 @@ class IgnoriApp(App):
     def selected_file(self: Self, event: SearchForm.Selected) -> None:
         self.selected_ignore_file = event.selected_file
 
+    @on(GenerationForm.Generated)
+    def generated_file(self: Self, event: GenerationForm.Generated) -> None:
+        self.selected_ignore_file = event.selected_file
+
     def compose(self: Self) -> ComposeResult:
         yield Header()
         with Vertical(id="container"):
