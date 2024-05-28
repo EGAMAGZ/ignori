@@ -46,7 +46,7 @@ class GenerationForm(Widget):
         label = self.query_one("#path-label", expect_type=Label)
         label.update(
             (
-                f"Language: [b]{ignore_file.language}[/b]"
+                f"[b]Language:[/b] {ignore_file.language}"
                 if ignore_file
                 else "No language selected"
             ),
