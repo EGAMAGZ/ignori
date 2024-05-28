@@ -74,7 +74,7 @@ class SearchForm(Widget):
 
     @on(OptionList.OptionHighlighted, selector="#ignore-list")
     def show_file_content(self: Self, event: OptionList.OptionHighlighted) -> None:
-        if event.option_id is not None:
+        if event.option_id:
             highligted_file = get_option_by_id(self.ignore_files, event.option_id)
 
             if highligted_file:
@@ -82,7 +82,7 @@ class SearchForm(Widget):
 
     @on(OptionList.OptionSelected, selector="#ignore-list")
     def select_file(self: Self, event: OptionList.OptionSelected) -> None:
-        if event.option_id is not None:
+        if event.option_id:
             selected_file = get_option_by_id(self.ignore_files, event.option_id)
 
             if selected_file:
