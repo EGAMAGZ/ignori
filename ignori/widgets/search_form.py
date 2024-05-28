@@ -87,7 +87,7 @@ class SearchForm(Widget):
 
             if selected_file:
                 self.post_message(self.Selected(selected_file))
-                self.notify(f"{selected_file.language} selected")
+                self.notify(f"{selected_file.language} selected", title="Success")
 
     def watch_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
         ignore_list = self.query_one("#ignore-list", expect_type=OptionList)

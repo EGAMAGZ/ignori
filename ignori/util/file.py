@@ -14,7 +14,7 @@ def search_files_by_name(template_name: str = "") -> list[IgnoreFile]:
     return sorted(template_files, key=lambda file: file.language)
 
 
-def copy_file_content(
+def copy_file_content(*,
     source_file: Path,
     destination_path: Path,
     file_name: str = ".gitignore",

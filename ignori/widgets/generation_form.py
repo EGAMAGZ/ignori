@@ -37,28 +37,38 @@ class GenerationForm(Widget):
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
     def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
-        if ignore_file:
-            label = self.query_one("#path-label", expect_type=Label)
-            label.update("Language: " + ignore_file.language)
+        label = self.query_one("#path-label", expect_type=Label)
+        label.update(
+            (
+                f"Language: {ignore_file.language}"
+                if ignore_file
+                else "No language selected"
+            ),
+        )
 
     @on(Button.Pressed, selector="#path-button")
-    def generate_file(self: Self, event: Button.Pressed) -> None:
-        path_input = self.query_one(selector="#path-input", expect_type=Input)
+    def generate_file(self: Self) -> None:
+        input_field = self.query_one("#path-input", expect_type=Input)
 
-        path = Path(path_input.value)
-        if not path.exists():
-            self.notify("Path does not exist", severity="error")
+        if not input_field.is_valid:
+            self.notify(
+                "Path does not exist or is not a directory",
+                title="Error",
+                severity="error",
+            )
             return
 
-        if not path.is_dir():
-            self.notify("Path is not a directory", severity="error")
+        if self.selected_ignore_file is None:
+            self.notify("No language selected", title="Error", severity="error")
             return
 
-        if self.selected_ignore_file:
-            copy_file_content(self.selected_ignore_file.path, path)
+        copy_file_content(
+            source_file=self.selected_ignore_file.path,
+            destination_path=Path(input_field.value),
+        )
 
-            self.notify("File generated successfully")
-            self.reset_form()
+        self.notify("File generated successfully", title="Success")
+        self.reset_form()
 
     def reset_form(self: Self) -> None:
         self.query_one(selector="#path-input", expect_type=Input).clear()

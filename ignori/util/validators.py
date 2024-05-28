@@ -13,8 +13,4 @@ class PathValidator(Validator):
     @staticmethod
     def validate_path(value: str) -> bool:
         path = Path(value)
-        if not path.exists():
-            return False
-        if not path.is_dir():
-            return False
-        return True
+        return path.exists() and path.is_dir()
