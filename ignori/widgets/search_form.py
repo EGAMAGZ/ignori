@@ -28,7 +28,7 @@ def get_option_by_id(
 class SearchForm(Widget):
 
     DEFAULT_CSS = """
-    SearchForm{
+    SearchForm {
         width: 100%;
         & #ignore-container{
             & OptionList {
@@ -109,6 +109,6 @@ class SearchForm(Widget):
                 yield OptionList(
                     id="ignore-list",
                 )
-                yield FilePreview(_id="ignore-code").data_bind(
+                yield FilePreview(id="ignore-code").data_bind(
                     SearchForm.highlighted_ignore_file,
                 )
