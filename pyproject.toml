@@ -10,6 +10,7 @@ python = "^3.12"
 textual = "^0.63.5"
 rich = "^13.7.1"
 pipe = "^2.2"
+ruff = "^0.4.6"
 
 
 [tool.poetry.group.dev.dependencies]
