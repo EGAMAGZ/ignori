@@ -1,13 +1,40 @@
+$primary: #F35530;
+$secondary: #F3AE9B;
+$background: #000000;
+# $panel: #000000;
+$accent: #F35530;
+
+$error: #EE678E;
+$warning: #F6D661;
+$success: #66EAC6;
+
 * {
     box-sizing: border-box;
 }
 
 #container {
-    & SearchForm{
+    & SearchForm {
         height: 1fr;
     }
 
-    & GenerationForm{
+    & GenerationForm {
         height: auto;
     }
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.muted-text {
+    color: $text 20%;
+}
+
+.highlighted-text {
+    background: $accent;
+    color: $text 80%;
 }

@@ -20,6 +20,9 @@ class GenerationForm(Widget):
     GenerationForm {
         & #path-container {
             height: auto;
+            & #path-label{
+                offset-x: 1;
+            }
         }
 
         & #path-form-container{
@@ -49,6 +52,9 @@ class GenerationForm(Widget):
                 else "No language selected"
             ),
         )
+
+        label.set_class(ignore_file is None, "muted-text")
+        label.set_class(ignore_file is not None, "highlighted-text")
 
     @on(Button.Pressed, selector="#path-button")
     def generate_file(self: Self) -> None:
