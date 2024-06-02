@@ -13,12 +13,23 @@ from ignori.widgets.generation_form import GenerationForm
 from ignori.widgets.search_form import SearchForm
 
 
-class IgnoriApp(App):
+class IgnoriApp(App[None], inherit_bindings=False):
     TITLE = APP_TITLE
     CSS_PATH = str(STYLES_PATH / "global.tcss")
 
     BINDINGS = [
-        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
+        Binding(
+            key="ctrl+q",
+            action="quit",
+            description="Quit",
+            priority=True,
+        ),
+        Binding(
+            key="ctrl+d",
+            action="toggle_dark",
+            description="Toggle Dark Mode",
+            priority=True,
+        ),
     ]
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)

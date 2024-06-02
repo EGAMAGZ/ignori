@@ -12,6 +12,7 @@ from textual.widgets.option_list import Option
 from ignori.ignore_file import IgnoreFile
 from ignori.util.file import search_files_by_name
 from ignori.widgets.file_preview import FilePreview
+from ignori.widgets.language_list import LanguageList
 
 
 def get_option_by_id(
@@ -106,9 +107,7 @@ class SearchForm(Widget):
                 yield Input(placeholder="Search...", type="text", id="search-input")
                 yield Button("Search", id="search-button")
             with Horizontal(id="ignore-container"):
-                yield OptionList(
-                    id="ignore-list",
-                )
+                yield LanguageList(id="ignore-list")
                 yield FilePreview(id="ignore-code").data_bind(
                     SearchForm.highlighted_ignore_file,
                 )
