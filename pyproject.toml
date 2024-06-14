@@ -18,6 +18,7 @@ textual-dev = "^1.5.1"
 ruff = "^0.4.4"
 mypy = "^1.10.0"
 pytest = "^8.2.1"
+ruff-lsp = "^0.0.53"
 
 [build-system]
 requires = ["poetry-core"]
