@@ -3,7 +3,7 @@ from typing import Self
 
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import Container, Horizontal
+from textual.containers import Horizontal
 from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
@@ -14,32 +14,62 @@ from ignori.util.file import copy_file_content
 from ignori.util.validators import PathValidator
 
 
-class GenerationForm(Widget):
+class PathInput(Input):
 
-    DEFAULT_CSS = """
-    GenerationForm {
-        & #path-container {
-            height: auto;
-            & #path-label{
-                offset-x: 1;
-            }
-        }
+    DEFAULT_CSS = """\
+    PathInput {
+        border: none;
+        width: 1fr;
+        height: 1;
 
-        & #path-form-container{
-            height: auto;
-            & #path-input{
-                width: 1fr;
-            }
+        &:focus {
+            /* TODO: CHECK WHY IS REQUIRED THE IMPORTANT */
+            border: none !important;
+            width: 1fr;
+            height: 1 !important;
 
-            & #path-button{
-                width: auto;
+            & .input--cursor {
+                color: $text;
+                background: $accent-lighten-2;
             }
         }
     }
     """
 
+class PathGenerationButton(Button):
+
+    DEFAULT_CSS = """\
+    PathGenerationButton {
+        padding: 0 1;
+        height: 1;
+        min-width: 5;
+        background: $primary;
+        color: $text;
+        border: none;
+        text-style: none;
+
+        &:hover {
+            text-style: b;
+            padding: 0 1;
+            border: none;
+            background: $primary-darken-1;
+        }
+    }
+    """
+
+class GenerationForm(Widget):
+
+    DEFAULT_CSS = """\
+    GenerationForm {
+        padding: 1;
+        & #path-form-container{
+            height: 1;
+        }
+    }
+    """
+
     class Generated(Message):
-        pass
+        ...
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
@@ -85,18 +115,20 @@ class GenerationForm(Widget):
         self.post_message(self.Generated())
 
     def compose(self: Self) -> ComposeResult:
-        with Container(id="path-container"):
-            yield Label(
-                "No language selected",
-                id="path-label",
+        yield Label(
+            "No language selected",
+            id="path-label",
+        )
+        with Horizontal(id="path-form-container"):
+            yield PathInput(
+                id="path-input",
+                placeholder=f"{Path.cwd()}",
+                type="text",
+                validators=[
+                    PathValidator(),
+                ],
             )
-            with Horizontal(id="path-form-container"):
-                yield Input(
-                    id="path-input",
-                    placeholder=f"{Path.cwd()}",
-                    type="text",
-                    validators=[
-                        PathValidator(),
-                    ],
-                )
-                yield Button("Generate", id="path-button")
+            yield PathGenerationButton(
+                    "Generate",
+                    id="path-button",
+            )
