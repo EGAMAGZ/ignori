@@ -5,11 +5,12 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Vertical
 from textual.reactive import reactive
-from textual.widgets import Footer, Header
+from textual.widgets import Footer
 
 from ignori.ignore_file import IgnoreFile
 from ignori.util.settings import APP_TITLE, STYLES_PATH
 from ignori.widgets.generation_form import GenerationForm
+from ignori.widgets.header import Header
 from ignori.widgets.search_form import SearchForm
 
 

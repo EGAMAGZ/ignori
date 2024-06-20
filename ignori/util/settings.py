@@ -7,3 +7,6 @@ STYLES_PATH = BASE_DIR / "styles"
 TEMPLATES_PATH = BASE_DIR / "templates"
 
 APP_TITLE = "Ignori"
+
+APP_VERSION = ""
+
