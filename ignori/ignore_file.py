@@ -11,7 +11,7 @@ class IgnoreFile:
 
     def __post_init__(self: Self) -> None:
         self.language = self.path.stem
-        self.id = self.language.lower()[:3]
+        self.id = self.language.lower()
 
 
 if __name__ == "__main__":
