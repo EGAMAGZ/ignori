@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Self
 
 from textual import on
@@ -10,7 +11,7 @@ from textual.widgets import Button, Input, OptionList
 from textual.widgets.option_list import Option
 
 from ignori.ignore_file import IgnoreFile
-from ignori.util.file import search_files_by_name
+from ignori.util.file import get_gitignore_templates
 from ignori.widgets.file_preview import FilePreview
 from ignori.widgets.language_list import LanguageList
 
@@ -63,7 +64,9 @@ class SearchForm(Widget):
             self.selected_file = selected_file
             super().__init__()
 
-    ignore_files: reactive[list[IgnoreFile]] = reactive(search_files_by_name())
+    ignore_files: reactive[list[IgnoreFile]] = reactive(get_gitignore_templates())
+    filtered_ignore_files: reactive[list[IgnoreFile]] = reactive([])
+    search_name: reactive[str] = reactive("")
 
     highlighted_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
@@ -71,7 +74,7 @@ class SearchForm(Widget):
     def search_ignore_file(self: Self, event: Button.Pressed) -> None:
         path_input = self.query_one(selector="#search-input", expect_type=Input)
 
-        self.ignore_files = search_files_by_name(path_input.value)
+        self.search_name = path_input.value
 
     @on(OptionList.OptionHighlighted, selector="#ignore-list")
     def show_file_content(self: Self, event: OptionList.OptionHighlighted) -> None:
@@ -90,7 +93,14 @@ class SearchForm(Widget):
                 self.post_message(self.Selected(selected_file))
                 self.notify(f"{selected_file.language} selected", title="Success")
 
-    def watch_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
+
+    def compute_filtered_ignore_files(self: Self) -> list[IgnoreFile]:
+        return [
+            file for file in self.ignore_files
+            if self.search_name in file.language
+        ]
+
+    def watch_filtered_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
         ignore_list = self.query_one("#ignore-list", expect_type=OptionList)
         ignore_list.clear_options()
 
