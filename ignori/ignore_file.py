@@ -1,6 +1,9 @@
 from dataclasses import dataclass, field
+from itertools import cycle
 from pathlib import Path
 from typing import Self
+
+from rich.console import Console, ConsoleOptions, RenderResult
 
 
 @dataclass
@@ -13,4 +16,28 @@ class IgnoreFile:
     def __post_init__(self: Self) -> None:
         self.language = self.path.stem
         self.id = self.language.lower()
+        self.id = "-".join([
+            self.language.lower(),
+            *self.categories,
+        ])
+
+    def __rich_console__(
+        self: Self,
+        console: Console,
+        options: ConsoleOptions,
+    ) -> RenderResult:
+        categories_colors = cycle(
+            [
+                "white on red",
+                "white on blue",
+                "black on green",
+                "black on yellow",
+            ],
+        )
+        categories = " ".join([
+                f"[{(color:=next(categories_colors))}]{category}[/{color}]"
+                for category in self.categories
+            ],
+        )
+        yield f"{self.language} {categories}" if categories else f"{self.language}"
 

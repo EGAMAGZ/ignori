@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Self
 
 from textual import on
@@ -93,7 +92,6 @@ class SearchForm(Widget):
                 self.post_message(self.Selected(selected_file))
                 self.notify(f"{selected_file.language} selected", title="Success")
 
-
     def compute_filtered_ignore_files(self: Self) -> list[IgnoreFile]:
         return [
             file for file in self.ignore_files
@@ -106,7 +104,7 @@ class SearchForm(Widget):
 
         if ignore_files:
             ignore_list.add_options(
-                [Option(file.language, id=file.id) for file in ignore_files],
+                [Option(file, id=file.id) for file in ignore_files],
             )
         else:
             ignore_list.add_option(Option("No files found", disabled=True))
