@@ -12,7 +12,7 @@ from ignori.ignore_file import IgnoreFile
 
 
 class FilePreview(
-    Widget,
+    Container,
     can_focus=True,
     can_focus_children=False,
     inherit_bindings=False,
@@ -27,7 +27,7 @@ class FilePreview(
         border: tall transparent;
         padding: 0 1;
 
-        & #file-preview-label {
+        & Label {
             width: 100%;
             background: $primary;
             color: $text;
@@ -93,10 +93,9 @@ class FilePreview(
 
 
     def compose(self: Self) -> ComposeResult:
-        with Container(id="file-preview-container"):
-            yield Label("Preview", id="file-preview-label")
-            with VerticalScroll():
-                yield Static(
-                    id="file-preview-code",
-                    expand=True,
-                )
+        yield Label("Preview", id="file-preview-label")
+        with VerticalScroll():
+            yield Static(
+                id="file-preview-code",
+                expand=True,
+            )
