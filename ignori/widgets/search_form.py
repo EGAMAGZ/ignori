@@ -70,6 +70,7 @@ class SearchForm(Widget):
     highlighted_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
     @on(Button.Pressed, selector="#search-button")
+    @on(Input.Submitted, selector="#search-input")
     def search_ignore_file(self: Self, event: Button.Pressed) -> None:
         path_input = self.query_one(selector="#search-input", expect_type=Input)
 
