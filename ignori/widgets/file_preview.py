@@ -5,7 +5,6 @@ from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Container, VerticalScroll
 from textual.reactive import reactive
-from textual.widget import Widget
 from textual.widgets import Label, Static
 
 from ignori.ignore_file import IgnoreFile

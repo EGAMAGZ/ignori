@@ -12,29 +12,8 @@ from textual.widgets import Button, Input, Label
 from ignori.ignore_file import IgnoreFile
 from ignori.util.file import copy_file_content
 from ignori.util.validators import PathValidator
+from ignori.widgets.input import BorderlessInput
 
-
-class PathInput(Input):
-
-    DEFAULT_CSS = """\
-    PathInput {
-        border: none;
-        width: 1fr;
-        height: 1;
-
-        &:focus {
-            /* TODO: CHECK WHY IS REQUIRED THE IMPORTANT */
-            border: none !important;
-            width: 1fr;
-            height: 1 !important;
-
-            & .input--cursor {
-                color: $text;
-                background: $accent-lighten-2;
-            }
-        }
-    }
-    """
 
 class PathGenerationButton(Button):
 
@@ -64,6 +43,9 @@ class GenerationForm(Widget):
         padding: 1;
         & #path-form-container{
             height: 1;
+            & Label {
+                padding: 0 1;
+            }
         }
     }
     """
@@ -87,15 +69,22 @@ class GenerationForm(Widget):
         label.set_class(ignore_file is not None, "highlighted-text")
 
     @on(Button.Pressed, selector="#path-button")
-    def generate_file(self: Self) -> None:
-        input_field = self.query_one("#path-input", expect_type=Input)
-        result = input_field.validate(input_field.value)
+    @on(Input.Submitted, selector="#path-input")
+    def generate_file(self: Self, event: Input.Submitted | Button.Pressed) -> None:
+        if isinstance(event, Input.Submitted):
+            input_field = event.control
+            result = event.validation_result
+        elif isinstance(event, Button.Pressed):
+            input_field = self.query_one("#path-input", expect_type=Input)
+            result = input_field.validate(input_field.value)
+
         if not input_field.is_valid and result:
             self.notify(
                 "".join(result.failure_descriptions),
                 title="Error",
                 severity="error",
             )
+            input_field.focus()
             return
 
         if self.selected_ignore_file is None:
@@ -120,12 +109,17 @@ class GenerationForm(Widget):
             id="path-label",
         )
         with Horizontal(id="path-form-container"):
-            yield PathInput(
+            yield Label("Output:")
+            yield BorderlessInput(
                 id="path-input",
                 placeholder=f"{Path.cwd()}",
                 type="text",
                 validators=[
                     PathValidator(),
+                ],
+                validate_on=[
+                    "blur",
+                    "submitted",
                 ],
             )
             yield PathGenerationButton(
