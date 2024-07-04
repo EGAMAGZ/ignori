@@ -45,6 +45,7 @@ class GenerationForm(Widget):
             height: 1;
             & Label {
                 padding: 0 1;
+                background: $primary-darken-3;
             }
         }
     }
