@@ -13,10 +13,10 @@ from ignori.ignore_file import IgnoreFile
 from ignori.util.file import copy_file_content
 from ignori.util.validators import PathValidator
 from ignori.widgets.input import BorderlessInput
+from ignori.widgets.language_badge import LanguageBadge
 
 
 class PathGenerationButton(Button):
-
     DEFAULT_CSS = """\
     PathGenerationButton {
         padding: 0 1;
@@ -36,8 +36,8 @@ class PathGenerationButton(Button):
     }
     """
 
-class GenerationForm(Widget):
 
+class GenerationForm(Widget):
     DEFAULT_CSS = """\
     GenerationForm {
         padding: 1;
@@ -51,23 +51,9 @@ class GenerationForm(Widget):
     }
     """
 
-    class Generated(Message):
-        ...
+    class Generated(Message): ...
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
-
-    def watch_selected_ignore_file(self: Self, ignore_file: IgnoreFile | None) -> None:
-        label = self.query_one("#path-label", expect_type=Label)
-        label.update(
-            (
-                f"[b]Language:[/b] {ignore_file.language}"
-                if ignore_file
-                else "No language selected"
-            ),
-        )
-
-        label.set_class(ignore_file is None, "muted-text")
-        label.set_class(ignore_file is not None, "highlighted-text")
 
     @on(Button.Pressed, selector="#path-button")
     @on(Input.Submitted, selector="#path-input")
@@ -105,10 +91,9 @@ class GenerationForm(Widget):
         self.post_message(self.Generated())
 
     def compose(self: Self) -> ComposeResult:
-        yield Label(
-            "No language selected",
-            id="path-label",
-        )
+        yield LanguageBadge().data_bind(
+                language_selected = GenerationForm.selected_ignore_file
+            )
         with Horizontal(id="path-form-container"):
             yield Label("Output:")
             yield BorderlessInput(
@@ -124,6 +109,6 @@ class GenerationForm(Widget):
                 ],
             )
             yield PathGenerationButton(
-                    "Generate",
-                    id="path-button",
+                "Generate",
+                id="path-button",
             )

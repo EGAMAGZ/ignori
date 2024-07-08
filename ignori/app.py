@@ -11,6 +11,7 @@ from ignori.ignore_file import IgnoreFile
 from ignori.util.settings import APP_TITLE, STYLES_PATH
 from ignori.widgets.generation_form import GenerationForm
 from ignori.widgets.header import Header
+from ignori.widgets.language_badge import LanguageBadge
 from ignori.widgets.search_form import SearchForm
 
 
@@ -34,6 +35,10 @@ class IgnoriApp(App[None], inherit_bindings=False):
     ]
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
+
+    @on(LanguageBadge.Pressed)
+    def unselect_file(self: Self, event: LanguageBadge.Pressed) -> None:
+        self.selected_ignore_file = None
 
     @on(SearchForm.Selected)
     def selected_file(self: Self, event: SearchForm.Selected) -> None:
