@@ -7,7 +7,7 @@ from textual.screen import ModalScreen
 from textual.widgets import Button, Label
 
 
-class InfoModal(ModalScreen):
+class InfoModal(ModalScreen[None]):
 
     DEFAULT_CSS = """
     InfoModal {
