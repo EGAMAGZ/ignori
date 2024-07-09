@@ -48,5 +48,5 @@ class ConfirmModal(ModalScreen[bool]):
         with Container():
             yield Label(self.message)
             with Horizontal():
-                yield Button("No", id="no", variant="error")
                 yield Button("Yes", id="yes", variant="success")
+                yield Button("No", id="no", variant="error")

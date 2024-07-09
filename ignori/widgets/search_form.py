@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import Self
 
 from textual import on
@@ -27,7 +28,6 @@ def get_option_by_id(
 
 
 class SearchForm(Widget):
-
     DEFAULT_CSS = """
     SearchForm {
         width: 100%;
@@ -55,13 +55,11 @@ class SearchForm(Widget):
     }
     """
 
+    @dataclass
     class Selected(Message):
-        def __init__(
-            self: "SearchForm.Selected",
-            selected_file: IgnoreFile | None,
-        ) -> None:
-            self.selected_file = selected_file
-            super().__init__()
+        """Event sent when language is selected"""
+
+        selected_file: IgnoreFile | None
 
     ignore_files: reactive[list[IgnoreFile]] = reactive(get_gitignore_templates())
     filtered_ignore_files: reactive[list[IgnoreFile]] = reactive([])

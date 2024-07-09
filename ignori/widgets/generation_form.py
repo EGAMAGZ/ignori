@@ -54,7 +54,9 @@ class GenerationForm(Widget):
     }
     """
 
-    class Generated(Message): ...
+    class Generated(Message):
+        """Event sent when `.gitignore` file is generated"""
+        ...
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
@@ -103,11 +105,13 @@ class GenerationForm(Widget):
         output_file = output_path / DEFAULT_OUTPUT_FILE
         if output_file.exists():
             confirm_callback = partial(
-                handle_confirm, source_file=source_file, output_file=output_file,
+                handle_confirm,
+                source_file=source_file,
+                output_file=output_file,
             )
             self.app.push_screen(
-                ConfirmModal(
-                    message=".gitignore already exists. Do you want to overwrite?",
+                screen=ConfirmModal(
+                    message=".gitignore already exists. Do you want to overwrite it?",
                 ),
                 callback=confirm_callback,
             )
