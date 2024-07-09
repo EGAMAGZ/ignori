@@ -90,7 +90,6 @@ class FilePreview(
         else:
             preview.update("No file selected")
 
-
     def compose(self: Self) -> ComposeResult:
         yield Label("Preview", id="file-preview-label")
         with VerticalScroll():

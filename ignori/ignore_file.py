@@ -16,10 +16,12 @@ class IgnoreFile:
     def __post_init__(self: Self) -> None:
         self.language = self.path.stem
         self.id = self.language.lower()
-        self.id = "-".join([
-            self.language.lower(),
-            *self.categories,
-        ])
+        self.id = "-".join(
+            [
+                self.language.lower(),
+                *self.categories,
+            ],
+        )
 
     def __rich_console__(
         self: Self,
@@ -34,10 +36,10 @@ class IgnoreFile:
                 "black on yellow",
             ],
         )
-        categories = " ".join([
+        categories = " ".join(
+            [
                 f"[{(color:=next(categories_colors))}]{category}[/{color}]"
                 for category in self.categories
             ],
         )
         yield f"{self.language} {categories}" if categories else f"{self.language}"
-

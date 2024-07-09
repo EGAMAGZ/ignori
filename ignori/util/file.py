@@ -11,11 +11,11 @@ def get_gitignore_templates() -> list[IgnoreFile]:
     for path in TEMPLATES_PATH.iterdir():
         if path.is_dir():
             template_files.extend(
-                    __get_files(
-                        template_subpath=path,
-                        categories=current_categories,
-                    ),
-                )
+                __get_files(
+                    template_subpath=path,
+                    categories=current_categories,
+                ),
+            )
 
         else:
             template_files.append(
@@ -36,24 +36,25 @@ def __get_files(template_subpath: Path, categories: list[str]) -> list[IgnoreFil
     for path in template_subpath.iterdir():
         if path.is_dir():
             template_files.extend(
-                    __get_files(
-                        template_subpath=path,
-                        categories=current_categories,
-                    ),
+                __get_files(
+                    template_subpath=path,
+                    categories=current_categories,
+                ),
             )
 
         else:
             template_files.append(
-                    IgnoreFile(
-                        path=path,
-                        categories=current_categories,
-                    ),
+                IgnoreFile(
+                    path=path,
+                    categories=current_categories,
+                ),
             )
 
     return template_files
 
 
-def copy_file_content(*,
+def copy_file_content(
+    *,
     source_file: Path,
     destination_path: Path,
     file_name: str = ".gitignore",

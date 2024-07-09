@@ -95,7 +95,8 @@ class SearchForm(Widget):
 
     def compute_filtered_ignore_files(self: Self) -> list[IgnoreFile]:
         return [
-            file for file in self.ignore_files
+            file
+            for file in self.ignore_files
             if self.search_name.lower() in file.language.lower()
         ]
 

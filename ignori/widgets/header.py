@@ -9,7 +9,7 @@ from ignori.util.settings import APP_TITLE, APP_VERSION
 
 class Header(Horizontal):
 
-    DEFAULT_CSS ="""\
+    DEFAULT_CSS = """\
     Header {
         background: $primary;
         height: 1;
