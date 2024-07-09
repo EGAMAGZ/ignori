@@ -56,10 +56,7 @@ def __get_files(template_subpath: Path, categories: list[str]) -> list[IgnoreFil
 def copy_file_content(
     *,
     source_file: Path,
-    destination_path: Path,
-    file_name: str = ".gitignore",
+    output_file: Path,
 ) -> None:
-    destination_file = destination_path / file_name
-
-    with source_file.open("r") as source, destination_file.open("w") as destination:
+    with source_file.open("r") as source, output_file.open("w") as destination:
         destination.write(source.read())

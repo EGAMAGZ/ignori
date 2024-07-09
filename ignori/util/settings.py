@@ -9,3 +9,5 @@ TEMPLATES_PATH = BASE_DIR / "templates"
 APP_TITLE = "Ignori"
 
 APP_VERSION = ""
+
+DEFAULT_OUTPUT_FILE = ".gitignore"

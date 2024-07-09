@@ -1,3 +1,4 @@
+from functools import partial
 from pathlib import Path
 from typing import Self
 
@@ -10,7 +11,9 @@ from textual.widget import Widget
 from textual.widgets import Button, Input, Label
 
 from ignori.ignore_file import IgnoreFile
+from ignori.screens.modals.confirm_modal import ConfirmModal
 from ignori.util.file import copy_file_content
+from ignori.util.settings import DEFAULT_OUTPUT_FILE
 from ignori.util.validators import PathValidator
 from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_badge import LanguageBadge
@@ -78,13 +81,43 @@ class GenerationForm(Widget):
             self.notify("No language selected", title="Error", severity="error")
             return
 
-        copy_file_content(
+        self.validate_generation(
             source_file=self.selected_ignore_file.path,
-            destination_path=Path(input_field.value),
+            output_path=Path(input_field.value),
         )
 
-        self.notify("File generated successfully", title="Success")
-        self.reset_form()
+    def validate_generation(self: Self, source_file: Path, output_path: Path) -> None:
+        def handle_confirm(
+            response: bool,
+            source_file: Path,
+            output_file: Path,
+        ) -> None:
+            if response:
+                copy_file_content(
+                    source_file=source_file,
+                    output_file=output_file,
+                )
+                self.notify("File generated successfully", title="Success")
+                self.reset_form()
+
+        output_file = output_path / DEFAULT_OUTPUT_FILE
+        if output_file.exists():
+            confirm_callback = partial(
+                handle_confirm, source_file=source_file, output_file=output_file,
+            )
+            self.app.push_screen(
+                ConfirmModal(
+                    message=".gitignore already exists. Do you want to overwrite?",
+                ),
+                callback=confirm_callback,
+            )
+        else:
+            copy_file_content(
+                source_file=source_file,
+                output_file=output_file,
+            )
+            self.notify("File generated successfully", title="Success")
+            self.reset_form()
 
     def reset_form(self: Self) -> None:
         self.query_one(selector="#path-input", expect_type=Input).clear()

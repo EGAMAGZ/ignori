@@ -36,7 +36,7 @@ class ConfirmModal(ModalScreen[bool]):
 
     message: str
 
-    def __init__(self: "ConfirmModal", message: str) -> None:
+    def __init__(self: "ConfirmModal", *, message: str) -> None:
         super().__init__()
         self.message = message
 
