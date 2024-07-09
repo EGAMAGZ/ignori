@@ -44,9 +44,9 @@ class GenerationForm(Widget):
     DEFAULT_CSS = """\
     GenerationForm {
         padding: 1;
-        & #path-form-container{
+        & Horizontal {
             height: 1;
-            & Label {
+            & .label {
                 padding: 0 1;
                 background: $primary-darken-3;
             }
@@ -56,6 +56,7 @@ class GenerationForm(Widget):
 
     class Generated(Message):
         """Event sent when `.gitignore` file is generated"""
+
         ...
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
@@ -128,11 +129,13 @@ class GenerationForm(Widget):
         self.post_message(self.Generated())
 
     def compose(self: Self) -> ComposeResult:
-        yield LanguageBadge().data_bind(
-            language_selected=GenerationForm.selected_ignore_file,
-        )
+        with Horizontal():
+            yield Label("Language:", classes="label")
+            yield LanguageBadge().data_bind(
+                language_selected=GenerationForm.selected_ignore_file,
+            )
         with Horizontal(id="path-form-container"):
-            yield Label("Output:")
+            yield Label("Output:", classes="label")
             yield BorderlessInput(
                 id="path-input",
                 placeholder=f"{Path.cwd()}",

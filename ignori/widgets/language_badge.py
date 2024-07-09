@@ -63,6 +63,7 @@ class LanguageBadge(
 
     class Pressed(Message):
         """Event sent when `LanguageBadge` is pressed"""
+
         ...
 
     def watch_language_selected(self: Self, ignore_file: IgnoreFile | None) -> None:
@@ -75,5 +76,5 @@ class LanguageBadge(
         self.post_message(self.Pressed())
 
     def compose(self: Self) -> ComposeResult:
-        yield Label("X", id="icon")
         yield Label("No language", id="language-name")
+        yield Label("X", id="icon")
