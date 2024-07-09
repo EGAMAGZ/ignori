@@ -92,8 +92,8 @@ class GenerationForm(Widget):
 
     def compose(self: Self) -> ComposeResult:
         yield LanguageBadge().data_bind(
-                language_selected = GenerationForm.selected_ignore_file
-            )
+            language_selected=GenerationForm.selected_ignore_file,
+        )
         with Horizontal(id="path-form-container"):
             yield Label("Output:")
             yield BorderlessInput(

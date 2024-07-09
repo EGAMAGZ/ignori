@@ -20,20 +20,38 @@ class LanguageBadge(
     LanguageBadge {
         height: 1;
         width: auto;
-        padding: 0 1;
+        background: $secondary-darken-3;
+
+        &.no-language{
+            background: $secondary-background;
+            & #icon {
+                display: none;
+            }
+        }
 
         & #icon {
             padding: 0 1;
-            background: white;
+            background: $secondary;
             color: $text;
         }
-        & #language-name{
 
+        & #language-name {
+            color: $text;
+            min-width: 10;
+            padding: 0 1;
         }
     }
 
     LanguageBadge:focus {
-        background: $primary;
+        &.no-language {
+            background: $secondary-darken-3;
+        }
+
+        & #icon {
+            background: white;
+            color: $text;
+            text-style: bold;
+        }
     }
     """
 
@@ -45,14 +63,15 @@ class LanguageBadge(
 
     class Pressed(Message): ...
 
-
     def watch_language_selected(self: Self, ignore_file: IgnoreFile | None) -> None:
         language_name = self.query_one("#language-name", expect_type=Label)
         language_name.update(ignore_file.language if ignore_file else "No Language")
+
+        self.set_class(ignore_file is None, "no-language")
 
     def action_press(self: Self) -> None:
         self.post_message(self.Pressed())
 
     def compose(self: Self) -> ComposeResult:
         yield Label("X", id="icon")
-        yield Label("LANGUAGE", id="language-name")
+        yield Label("No language", id="language-name")
