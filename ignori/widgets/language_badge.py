@@ -56,7 +56,7 @@ class LanguageBadge(
     """
 
     BINDINGS = [
-        Binding("enter", "press", "Unselect languague", show=False),
+        Binding("enter,space", "press", "Unselect languague", show=False),
     ]
 
     language_selected: reactive[IgnoreFile | None] = reactive(None)

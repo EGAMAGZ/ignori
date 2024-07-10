@@ -33,8 +33,3 @@ $success: #66EAC6;
 .muted-text {
     color: $text 20%;
 }
-
-.highlighted-text {
-    background: $accent;
-    color: $text 80%;
-}

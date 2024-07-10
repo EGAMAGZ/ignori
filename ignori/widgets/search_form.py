@@ -6,13 +6,13 @@ from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
 from textual.message import Message
 from textual.reactive import reactive
-from textual.widget import Widget
 from textual.widgets import Button, Input, OptionList
 from textual.widgets.option_list import Option
 
 from ignori.ignore_file import IgnoreFile
 from ignori.util.file import get_gitignore_templates
 from ignori.widgets.file_preview import FilePreview
+from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_list import LanguageList
 
 
@@ -27,22 +27,33 @@ def get_option_by_id(
     return selected_file
 
 
-class SearchForm(Widget):
-    DEFAULT_CSS = """
+class SearchButton(Button):
+    DEFAULT_CSS = """\
+    SearchButton {
+        height: 1;
+        min-width: 5;
+        background: $secondary;
+        color: $text;
+        border: none;
+        text-style: none;
+
+        &:hover {
+            text-style: b;
+            padding: 0 1;
+            border: none;
+            background: $secondary-darken-1;
+        }
+    }
+    """
+
+
+class SearchForm(Container):
+    DEFAULT_CSS = """\
     SearchForm {
         width: 100%;
-        & #ignore-container{
-            & OptionList {
-                width: 1fr;
-                height:100%;
-            }
-            & #ignore-code{
-                width: 1fr !important;
-            }
-        }
 
         & #search-container{
-            height: auto;
+            height: 1;
 
             & #search-input {
                 width: 1fr;
@@ -50,6 +61,16 @@ class SearchForm(Widget):
 
             & #search-button {
                 width: auto;
+            }
+        }
+
+        & #ignore-container{
+            & OptionList {
+                width: 1fr;
+                height:100%;
+            }
+            & #ignore-code{
+                width: 1fr !important;
             }
         }
     }
@@ -110,12 +131,15 @@ class SearchForm(Widget):
             ignore_list.add_option(Option("No files found", disabled=True))
 
     def compose(self: Self) -> ComposeResult:
-        with Container():
-            with Horizontal(id="search-container"):
-                yield Input(placeholder="Search...", type="text", id="search-input")
-                yield Button("Search", id="search-button")
-            with Horizontal(id="ignore-container"):
-                yield LanguageList(id="ignore-list")
-                yield FilePreview(id="ignore-code").data_bind(
-                    SearchForm.highlighted_ignore_file,
-                )
+        with Horizontal(id="search-container"):
+            yield BorderlessInput(
+                placeholder="Search...",
+                type="text",
+                id="search-input",
+            )
+            yield SearchButton("Search", id="search-button")
+        with Horizontal(id="ignore-container"):
+            yield LanguageList(id="ignore-list")
+            yield FilePreview(id="ignore-code").data_bind(
+                SearchForm.highlighted_ignore_file,
+            )
