@@ -10,12 +10,11 @@ python = "^3.12"
 textual = "^0.63.5"
 rich = "^13.7.1"
 pipe = "^2.2"
-ruff = "^0.4.6"
 
 
 [tool.poetry.group.dev.dependencies]
 textual-dev = "^1.5.1"
-ruff = "^0.4.4"
+ruff = "^0.4.6"
 mypy = "^1.10.0"
 pytest = "^8.2.1"
 ruff-lsp = "^0.0.53"
