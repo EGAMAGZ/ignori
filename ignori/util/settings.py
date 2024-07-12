@@ -12,7 +12,9 @@ def get_version() -> str:
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-STYLES_PATH = BASE_DIR / "styles"
+STYLES_DIR = BASE_DIR / "styles"
+
+STYLES_PATH = [STYLES_DIR / "global.tcss", STYLES_DIR / "app.tcss"]
 
 TEMPLATES_PATH = BASE_DIR / "templates"
 

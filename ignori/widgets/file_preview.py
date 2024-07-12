@@ -16,7 +16,6 @@ class FilePreview(
     can_focus_children=False,
     inherit_bindings=False,
 ):
-
     DEFAULT_CSS = """
     FilePreview {
         height: auto;

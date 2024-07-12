@@ -12,6 +12,7 @@ class LanguageList(OptionList):
     BINDINGS = [
         Binding("ctrl+o", "open_templates", "Open explorer", show=True),
     ]
+    BORDER_TITLE = "Available languagues"
 
     def action_open_templates(self: Self) -> None:
         try:
