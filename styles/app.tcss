@@ -27,3 +27,16 @@ LanguageList {
 		border: round $accent;
 	}
 }
+
+FilePreview {
+		height: 100%;
+		background: $boost;
+		overflow-x: hidden;
+		border: round $accent 20%;
+		background: transparent;
+		padding: 0 1;
+}
+
+FilePreview:focus {
+	border: round $accent;
+}
