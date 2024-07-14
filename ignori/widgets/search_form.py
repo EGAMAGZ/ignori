@@ -6,7 +6,7 @@ from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
 from textual.message import Message
 from textual.reactive import reactive
-from textual.widgets import Button, Input, OptionList
+from textual.widgets import Button, Input, Label, OptionList
 from textual.widgets.option_list import Option
 
 from ignori.ignore_file import IgnoreFile
@@ -133,7 +133,7 @@ class SearchForm(Container):
     def compose(self: Self) -> ComposeResult:
         with Horizontal(id="search-container"):
             yield BorderlessInput(
-                placeholder="Name...",
+                placeholder="Language...",
                 type="text",
                 id="search-input",
             )

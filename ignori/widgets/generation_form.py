@@ -57,8 +57,6 @@ class GenerationForm(Widget):
     class Generated(Message):
         """Event sent when `.gitignore` file is generated"""
 
-        ...
-
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
 
     @on(Button.Pressed, selector="#path-button")
