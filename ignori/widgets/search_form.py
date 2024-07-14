@@ -133,7 +133,7 @@ class SearchForm(Container):
     def compose(self: Self) -> ComposeResult:
         with Horizontal(id="search-container"):
             yield BorderlessInput(
-                placeholder="Search...",
+                placeholder="Name...",
                 type="text",
                 id="search-input",
             )
