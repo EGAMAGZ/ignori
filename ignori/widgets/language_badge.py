@@ -1,6 +1,6 @@
 from typing import Self
 
-from textual.app import ComposeResult
+from textual.app import ComposeResult, events, on
 from textual.binding import Binding
 from textual.containers import Horizontal
 from textual.message import Message
@@ -70,6 +70,7 @@ class LanguageBadge(
 
         self.set_class(ignore_file is None, "no-language")
 
+    @on(events.Click)
     def action_press(self: Self) -> None:
         self.post_message(self.Pressed())
 
