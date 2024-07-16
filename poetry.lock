@@ -752,13 +752,13 @@ dev = ["mypy (==1.4.1)", "pip-tools (>=6.13.0,<7.0.0)", "pytest (>=7.3.1,<8.0.0)
 
 [[package]]
 name = "textual"
-version = "0.63.6"
+version = "0.72.0"
 description = "Modern Text User Interface framework"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "textual-0.63.6-py3-none-any.whl", hash = "sha256:7cf6c320b7445bcab42360d3957ed5b14163f8687fad282d772e2af6407ea3a1"},
-    {file = "textual-0.63.6.tar.gz", hash = "sha256:cac575e60fe8b376bed3d6ac1723c137cea69f3e48cecdc78b289da10de7f9e5"},
+    {file = "textual-0.72.0-py3-none-any.whl", hash = "sha256:a9886eb96bd6391b8795244d2b8fe592204556c42264ea7513a1211584e17366"},
+    {file = "textual-0.72.0.tar.gz", hash = "sha256:14174ce8d49016a85aa6c0669d0881b5419e98cf46d429f263314295409ed262"},
 ]
 
 [package.dependencies]
@@ -918,4 +918,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "eef87acb9dbf3c7a5afc9be601a14763055d4379f0949d1926ecc35cf05a0ecc"
+content-hash = "157bf11d8cf0a1b5936210b1f6f7a56772d1fc0a0efdda5e77101d6ce147fac5"
