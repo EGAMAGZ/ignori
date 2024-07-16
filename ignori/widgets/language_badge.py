@@ -16,45 +16,6 @@ class LanguageBadge(
     can_focus_children=False,
     inherit_bindings=False,
 ):
-    DEFAULT_CSS = """\
-    LanguageBadge {
-        height: 1;
-        width: auto;
-        background: $secondary-darken-3;
-
-        &.no-language{
-            background: $secondary-background;
-            & #icon {
-                display: none;
-            }
-        }
-
-        & #icon {
-            padding: 0 1;
-            background: $secondary;
-            color: $text;
-        }
-
-        & #language-name {
-            color: $text;
-            min-width: 10;
-            padding: 0 1;
-        }
-    }
-
-    LanguageBadge:focus {
-        &.no-language {
-            background: $secondary-darken-3;
-        }
-
-        & #icon {
-            background: white;
-            color: $text;
-            text-style: bold;
-        }
-    }
-    """
-
     BINDINGS = [
         Binding("enter,space", "press", "Unselect languague", show=False),
     ]

@@ -27,55 +27,10 @@ def get_option_by_id(
     return selected_file
 
 
-class SearchButton(Button):
-    DEFAULT_CSS = """\
-    SearchButton {
-        height: 1;
-        min-width: 5;
-        background: $secondary;
-        color: $text;
-        border: none;
-        text-style: none;
-
-        &:hover {
-            text-style: b;
-            padding: 0 1;
-            border: none;
-            background: $secondary-darken-1;
-        }
-    }
-    """
+class SearchButton(Button): ...
 
 
 class SearchForm(Container):
-    DEFAULT_CSS = """\
-    SearchForm {
-        width: 100%;
-
-        & #search-container{
-            height: 1;
-
-            & #search-input {
-                width: 1fr;
-            }
-
-            & #search-button {
-                width: auto;
-            }
-        }
-
-        & #ignore-container{
-            & OptionList {
-                width: 1fr;
-                height:100%;
-            }
-            & #ignore-code{
-                width: 1fr !important;
-            }
-        }
-    }
-    """
-
     @dataclass
     class Selected(Message):
         """Event sent when language is selected"""
