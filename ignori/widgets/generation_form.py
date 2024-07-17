@@ -19,40 +19,10 @@ from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_badge import LanguageBadge
 
 
-class PathGenerationButton(Button):
-    DEFAULT_CSS = """\
-    PathGenerationButton {
-        padding: 0 1;
-        height: 1;
-        min-width: 5;
-        background: $primary;
-        color: $text;
-        border: none;
-        text-style: none;
-
-        &:hover {
-            text-style: b;
-            padding: 0 1;
-            border: none;
-            background: $primary-darken-1;
-        }
-    }
-    """
+class PathGenerationButton(Button): ...
 
 
 class GenerationForm(Widget):
-    DEFAULT_CSS = """\
-    GenerationForm {
-        padding: 1;
-        & Horizontal {
-            height: 1;
-            & .label {
-                padding: 0 1;
-                background: $primary-darken-3;
-            }
-        }
-    }
-    """
 
     class Generated(Message):
         """Event sent when `.gitignore` file is generated"""

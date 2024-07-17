@@ -44,3 +44,107 @@ FilePreview {
 FilePreview:focus {
 	border: round $accent;
 }
+
+    PathGenerationButton {
+        padding: 0 1;
+        height: 1;
+        min-width: 5;
+        background: $primary;
+        color: $text;
+        border: none;
+        text-style: none;
+
+        &:hover {
+            text-style: b;
+            padding: 0 1;
+            border: none;
+            background: $primary-darken-1;
+        }
+    }
+
+GenerationForm {
+        padding: 1;
+        & Horizontal {
+            height: 1;
+            & .label {
+                padding: 0 1;
+                background: $primary-darken-3;
+            }
+        }
+    }
+    LanguageBadge {
+        height: 1;
+        width: auto;
+        background: $secondary-darken-3;
+
+        &.no-language{
+            background: $secondary-background;
+            & #icon {
+                display: none;
+            }
+        }
+
+        & #icon {
+            padding: 0 1;
+            background: $secondary;
+            color: $text;
+        }
+
+        & #language-name {
+            color: $text;
+            min-width: 10;
+            padding: 0 1;
+        }
+    }
+
+    LanguageBadge:focus {
+        &.no-language {
+            background: $secondary-darken-3;
+        }
+
+        & #icon {
+            background: white;
+            color: $text;
+            text-style: bold;
+        }
+    }
+    SearchButton {
+        height: 1;
+        min-width: 5;
+        background: $secondary;
+        color: $text;
+        border: none;
+        text-style: none;
+
+        &:hover {
+            text-style: b;
+            padding: 0 1;
+            border: none;
+            background: $secondary-darken-1;
+        }
+    }
+    SearchForm {
+        width: 100%;
+
+        & #search-container{
+            height: 1;
+
+            & #search-input {
+                width: 1fr;
+            }
+
+            & #search-button {
+                width: auto;
+            }
+        }
+
+        & #ignore-container{
+            & OptionList {
+                width: 1fr;
+                height:100%;
+            }
+            & #ignore-code{
+                width: 1fr !important;
+            }
+        }
+    }
