@@ -33,22 +33,22 @@ exclude = [".git", "__pycache__", "styles", ".vscode"]
 
 [tool.ruff.lint]
 select = [
-    "F",
-    "E",
-    "W",
-    "N",
-    "UP",
-    "ANN",
-    "BLE",
-    "A",
-    "COM",
-    "C4",
-    "DTZ",
-    "Q",
-    "SLF",
-    "SIM",
-    "PTH",
-    "I",
+	"F",
+	"E",
+	"W",
+	"N",
+	"UP",
+	"ANN",
+	"BLE",
+	"A",
+	"COM",
+	"C4",
+	"DTZ",
+	"Q",
+	"SLF",
+	"SIM",
+	"PTH",
+	"I",
 ]
 ignore = []
 
@@ -61,6 +61,8 @@ line-ending = "auto"
 
 
 [tool.mypy]
+python_version = "3.10"
+
 check_untyped_defs = true
 
 ignore_missing_imports = true
