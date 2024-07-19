@@ -43,3 +43,14 @@ class IgnoreFile:
             ],
         )
         yield f"{self.language} {categories}" if categories else f"{self.language}"
+
+
+def get_option_by_id(
+    ignore_files: list[IgnoreFile],
+    option_id: str,
+) -> IgnoreFile | None:
+    selected_file = next(
+        (file for file in ignore_files if file.id == option_id),
+        None,
+    )
+    return selected_file
