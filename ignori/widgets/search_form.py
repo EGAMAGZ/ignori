@@ -9,25 +9,34 @@ from textual.reactive import reactive
 from textual.widgets import Button, Input, OptionList
 from textual.widgets.option_list import Option
 
-from ignori.ignore_file import IgnoreFile
+from ignori.ignore_file import IgnoreFile, get_option_by_id
 from ignori.util.file import get_gitignore_templates
 from ignori.widgets.file_preview import FilePreview
 from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_list import LanguageList
 
 
-def get_option_by_id(
-    ignore_files: list[IgnoreFile],
-    option_id: str,
-) -> IgnoreFile | None:
-    selected_file = next(
-        (file for file in ignore_files if file.id == option_id),
-        None,
-    )
-    return selected_file
+class SearchButton(Button):
+    DEFAULT_CSS = """\
+    SearchButton {
+        height: 1;
+        min-width: 5;
+        background: $secondary;
+        color: $text;
+        border: none;
+        text-style: none;
 
-
-class SearchButton(Button): ...
+        &:hover {
+            text-style: b;
+            padding: 0 1;
+            border: none;
+            background: $secondary-darken-1;
+        }
+        &.-active {
+            border: none;
+        }
+    }
+    """
 
 
 class SearchForm(Container):
