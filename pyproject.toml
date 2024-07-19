@@ -18,8 +18,12 @@ pytest = "^8.2.2"
 textual-dev = "^1.5.1"
 ruff = "^0.4.6"
 mypy = "^1.10.0"
-pytest = "^8.2.1"
 ruff-lsp = "^0.0.53"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.8"
 
 [build-system]
 requires = ["poetry-core"]
