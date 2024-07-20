@@ -17,7 +17,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 STYLES_DIR = BASE_DIR / "styles"
 
-STYLES_PATH = [STYLES_DIR / "global.tcss", STYLES_DIR / "app.tcss"]
+STYLES_PATH = [
+    STYLES_DIR / "global.tcss",
+    STYLES_DIR / "widgets.tcss",
+    STYLES_DIR / "modals.tcss",
+]
 
 TEMPLATES_PATH = BASE_DIR / "templates"
 

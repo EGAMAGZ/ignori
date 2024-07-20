@@ -1,0 +1,50 @@
+ConfirmModal {
+    align: center middle;
+}
+
+ConfirmModal > Container {
+    width: auto;
+    height: auto;
+    border: thick $background 80%;
+    background: $surface;
+    padding: 1;
+}
+
+ConfirmModal > Container > Label {
+    width: 100%;
+    content-align-horizontal: center;
+    margin-top: 1;
+}
+
+ConfirmModal > Container > Horizontal {
+    width: auto;
+    height: auto;
+}
+
+ConfirmModal > Container > Horizontal > Button {
+    margin: 2 4;
+}
+
+InfoModal {
+    align: center middle;
+}
+
+InfoModal > Container {
+    width: auto;
+    height: auto;
+    border: tall $secondary 80%;
+    background: $surface;
+    padding: 2 4;
+}
+
+InfoModal > Container > Label {
+    width: 100%;
+    content-align-horizontal: center;
+    margin-top: 1;
+}
+
+InfoModal > Container > Button {
+    margin: 2 4;
+    width: auto;
+    height: auto;
+}
