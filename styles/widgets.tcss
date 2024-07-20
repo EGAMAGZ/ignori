@@ -21,10 +21,6 @@ BorderlessInput {
 	}
 }
 
-SearchForm {
-	padding: 0 1;
-}
-
 LanguageList {
 	border: round $accent 20%;
 	background: transparent;
@@ -97,6 +93,7 @@ LanguageBadge:focus {
 
 SearchForm {
     width: 100%;
+	padding: 0 1;
 
     & #search-container{
         height: 1;
