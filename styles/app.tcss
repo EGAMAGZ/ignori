@@ -1,4 +1,4 @@
-BorderlessInput{
+BorderlessInput {
 	border: none;
 	width: 1fr;
 	height: 1;
@@ -7,10 +7,12 @@ BorderlessInput{
 	    border: none !important;
 	    height: 1 !important;
 	}
+
 	& > .input--cursor {
 	    color: $text;
 	    background: $accent-lighten-2;
 	}
+
 	&.-invalid {
 	    border: none !important;
 	    height: 1;
@@ -33,118 +35,139 @@ LanguageList {
 }
 
 FilePreview {
-		height: 100%;
-		background: $boost;
-		overflow-x: hidden;
-		border: round $accent 20%;
-		background: transparent;
-		padding: 0 1;
+    height: 100%;
+    background: $boost;
+    overflow-x: hidden;
+    border: round $accent 20%;
+    background: transparent;
+    padding: 0 1;
 }
 
 FilePreview:focus {
 	border: round $accent;
 }
 
-    PathGenerationButton {
-        padding: 0 1;
-        height: 1;
-        min-width: 5;
-        background: $primary;
-        color: $text;
-        border: none;
-        text-style: none;
-
-        &:hover {
-            text-style: b;
-            padding: 0 1;
-            border: none;
-            background: $primary-darken-1;
-        }
-    }
-
 GenerationForm {
-        padding: 1;
-        & Horizontal {
-            height: 1;
-            & .label {
-                padding: 0 1;
-                background: $primary-darken-3;
-            }
-        }
-    }
-    LanguageBadge {
+    padding: 1;
+    & Horizontal {
         height: 1;
-        width: auto;
-        background: $secondary-darken-3;
-
-        &.no-language{
-            background: $secondary-background;
-            & #icon {
-                display: none;
-            }
+        & .label {
+            padding: 0 1;
+            background: $primary-darken-3;
         }
+    }
+}
 
+LanguageBadge {
+    height: 1;
+    width: auto;
+    background: $secondary-darken-3;
+
+    &.no-language{
+        background: $secondary-background;
         & #icon {
-            padding: 0 1;
-            background: $secondary;
-            color: $text;
-        }
-
-        & #language-name {
-            color: $text;
-            min-width: 10;
-            padding: 0 1;
+            display: none;
         }
     }
 
-    LanguageBadge:focus {
-        &.no-language {
-            background: $secondary-darken-3;
-        }
-
-        & #icon {
-            background: white;
-            color: $text;
-            text-style: bold;
-        }
-    }
-    SearchButton {
-        height: 1;
-        min-width: 5;
+    & #icon {
+        padding: 0 1;
         background: $secondary;
         color: $text;
-        border: none;
-        text-style: none;
+    }
 
-        &:hover {
-            text-style: b;
-            padding: 0 1;
-            border: none;
-            background: $secondary-darken-1;
+    & #language-name {
+        color: $text;
+        min-width: 10;
+        padding: 0 1;
+    }
+}
+
+LanguageBadge:focus {
+    &.no-language {
+        background: $secondary-darken-3;
+    }
+
+    & #icon {
+        background: white;
+        color: $text;
+        text-style: bold;
+    }
+}
+
+SearchForm {
+    width: 100%;
+
+    & #search-container{
+        height: 1;
+
+        & #search-input {
+            width: 1fr;
+        }
+
+        & #search-button {
+            width: auto;
         }
     }
-    SearchForm {
-        width: 100%;
 
-        & #search-container{
-            height: 1;
-
-            & #search-input {
-                width: 1fr;
-            }
-
-            & #search-button {
-                width: auto;
-            }
+    & #ignore-container{
+        & OptionList {
+            width: 1fr;
+            height:100%;
         }
-
-        & #ignore-container{
-            & OptionList {
-                width: 1fr;
-                height:100%;
-            }
-            & #ignore-code{
-                width: 1fr !important;
-            }
+        & #ignore-code{
+            width: 1fr !important;
         }
     }
+}
+
+ConfirmModal {
+    align: center middle;
+}
+
+ConfirmModal > Container {
+    width: auto;
+    height: auto;
+    border: thick $background 80%;
+    background: $surface;
+    padding: 1;
+}
+
+ConfirmModal > Container > Label {
+    width: 100%;
+    content-align-horizontal: center;
+    margin-top: 1;
+}
+
+ConfirmModal > Container > Horizontal {
+    width: auto;
+    height: auto;
+}
+
+ConfirmModal > Container > Horizontal > Button {
+    margin: 2 4;
+}
+
+InfoModal {
+    align: center middle;
+}
+
+InfoModal > Container {
+    width: auto;
+    height: auto;
+    border: tall $secondary 80%;
+    background: $surface;
+    padding: 2 4;
+}
+
+InfoModal > Container > Label {
+    width: 100%;
+    content-align-horizontal: center;
+    margin-top: 1;
+}
+
+InfoModal > Container > Button {
+    margin: 2 4;
+    width: auto;
+    height: auto;
+}

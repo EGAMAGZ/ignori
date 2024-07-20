@@ -7,33 +7,6 @@ from textual.widgets import Button, Label
 
 
 class ConfirmModal(ModalScreen[bool]):
-    DEFAULT_CSS = """\
-    ConfirmModal {
-        align: center middle;
-    }
-
-    ConfirmModal > Container {
-        width: auto;
-        height: auto;
-        border: thick $background 80%;
-        background: $surface;
-    }
-
-    ConfirmModal > Container > Label {
-        width: 100%;
-        content-align-horizontal: center;
-        margin-top: 1;
-    }
-
-    ConfirmModal > Container > Horizontal {
-        width: auto;
-        height: auto;
-    }
-
-    ConfirmModal > Container > Horizontal > Button {
-        margin: 2 4;
-    }"""
-
     message: str
 
     def __init__(self: "ConfirmModal", *, message: str) -> None:

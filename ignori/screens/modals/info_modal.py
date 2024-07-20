@@ -8,33 +8,6 @@ from textual.widgets import Button, Label
 
 
 class InfoModal(ModalScreen[None]):
-
-    DEFAULT_CSS = """
-    InfoModal {
-        align: center middle;
-    }
-
-    InfoModal > Container {
-        width: auto;
-        height: auto;
-        border: tall $secondary 80%;
-        background: $surface;
-        padding: 2 4;
-    }
-
-    InfoModal > Container > Label {
-        width: 100%;
-        content-align-horizontal: center;
-        margin-top: 1;
-    }
-
-    InfoModal > Container > Button {
-        margin: 2 4;
-        width: auto;
-        height: auto;
-    }
-    """
-
     message: str
     button_text: str
 

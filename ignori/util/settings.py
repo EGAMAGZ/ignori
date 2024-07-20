@@ -5,9 +5,12 @@ import tomllib
 
 def get_version() -> str:
     file_path = BASE_DIR / "pyproject.toml"
+
     with file_path.open("rb") as file:
         pyproject_data = tomllib.load(file)
-    return pyproject_data["tool"]["poetry"]["version"]
+
+    version: str = pyproject_data["tool"]["poetry"]["version"]
+    return version
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

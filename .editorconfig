@@ -1,0 +1,9 @@
+root = true
+
+[*.tcss]
+charset = utf-8
+indent_size = 4
+trim_trailing_whitespace = true
+indent_style = space
+end_of_line = crlf
+insert_final_newline = true
