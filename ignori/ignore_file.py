@@ -15,7 +15,6 @@ class IgnoreFile:
 
     def __post_init__(self: Self) -> None:
         self.language = self.path.stem
-        self.id = self.language.lower()
         self.id = "-".join(
             [
                 self.language.lower(),

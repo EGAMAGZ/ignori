@@ -29,11 +29,11 @@ def __get_files(template_subpath: Path, categories: list[str]) -> list[IgnoreFil
     return template_files
 
 
-def get_gitignore_templates() -> list[IgnoreFile]:
+def get_gitignore_templates(templates_path: Path = TEMPLATES_PATH) -> list[IgnoreFile]:
     template_files: list[IgnoreFile] = []
     current_categories: list[str] = []
 
-    for path in TEMPLATES_PATH.iterdir():
+    for path in templates_path.iterdir():
         if path.is_dir():
             template_files.extend(
                 __get_files(
@@ -58,5 +58,5 @@ def copy_file_content(
     source_file: Path,
     output_file: Path,
 ) -> None:
-    with source_file.open("r") as source, output_file.open("w") as destination:
+    with source_file.open() as source, output_file.open("w") as destination:
         destination.write(source.read())
