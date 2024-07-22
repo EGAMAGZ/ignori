@@ -9,10 +9,11 @@ from ignori.util.settings import TEMPLATES_PATH
 
 
 class LanguageList(OptionList):
+    DEFAULT_BORDER_TITLE = "Languages"
     BINDINGS = [
         Binding("ctrl+o", "open_templates", "Open explorer", show=True),
     ]
-    BORDER_TITLE = "Languagues"
+    BORDER_TITLE = DEFAULT_BORDER_TITLE
 
     def action_open_templates(self: Self) -> None:
         try:

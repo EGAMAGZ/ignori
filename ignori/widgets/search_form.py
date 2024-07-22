@@ -28,7 +28,6 @@ class SearchButton(Button):
 
         &:hover {
             text-style: b;
-            padding: 0 1;
             border: none;
             background: $secondary-darken-1;
         }
@@ -84,15 +83,19 @@ class SearchForm(Container):
         ]
 
     def watch_filtered_ignore_files(self: Self, ignore_files: list[IgnoreFile]) -> None:
-        ignore_list = self.query_one("#ignore-list", expect_type=OptionList)
+        ignore_list = self.query_one("#ignore-list", expect_type=LanguageList)
         ignore_list.clear_options()
 
         if ignore_files:
             ignore_list.add_options(
                 [Option(file, id=file.id) for file in ignore_files],
             )
+            ignore_list.border_title = (
+                f"{ignore_list.DEFAULT_BORDER_TITLE} ({ignore_list.option_count})"
+            )
         else:
             ignore_list.add_option(Option("No files found", disabled=True))
+            ignore_list.border_title = f"{ignore_list.DEFAULT_BORDER_TITLE}"
 
     def compose(self: Self) -> ComposeResult:
         with Horizontal(id="search-container"):
