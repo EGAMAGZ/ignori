@@ -21,8 +21,7 @@ def test_copy_file_content(
     assert generated_file.exists() == exists
 
     copy_file_content(source_file=source_file, output_file=generated_file)
-    with source_file.open() as source, generated_file.open() as output:
-        assert source.read() == output.read()
+    assert source_file.read_text() == generated_file.read_text()
 
 
 def test_get_gitignore_templates(data_dir: Path) -> None:

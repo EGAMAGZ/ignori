@@ -58,5 +58,6 @@ def copy_file_content(
     source_file: Path,
     output_file: Path,
 ) -> None:
-    with source_file.open() as source, output_file.open("w") as destination:
-        destination.write(source.read())
+    output_file.write_text(
+        data=source_file.read_text(),
+    )
