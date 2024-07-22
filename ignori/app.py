@@ -26,12 +26,6 @@ class IgnoriApp(App[None], inherit_bindings=False):
             description="Quit",
             priority=True,
         ),
-        Binding(
-            key="ctrl+d",
-            action="toggle_dark",
-            description="Toggle Dark Mode",
-            priority=True,
-        ),
     ]
 
     selected_ignore_file: reactive[IgnoreFile | None] = reactive(None)
