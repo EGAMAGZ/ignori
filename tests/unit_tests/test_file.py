@@ -22,11 +22,3 @@ def test_copy_file_content(
     copy_file_content(source_file=source_file, output_file=generated_file)
     with source_file.open() as source, generated_file.open() as output:
         assert source.read() == output.read()
-
-
-@pytest.fixture(scope="module", autouse=True)
-def cleanup(request: pytest.FixtureRequest) -> None:
-    def delete_output_file() -> None:
-        pass
-
-    request.addfinalizer(delete_output_file)
