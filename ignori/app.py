@@ -1,11 +1,10 @@
-from typing import Self
-
 from textual import on
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Vertical
 from textual.reactive import reactive
 from textual.widgets import Footer
+from typing_extensions import Self
 
 from ignori.ignore_file import IgnoreFile
 from ignori.util.settings import APP_TITLE, STYLES_PATH
@@ -17,7 +16,7 @@ from ignori.widgets.search_form import SearchForm
 
 class IgnoriApp(App[None], inherit_bindings=False):
     TITLE = APP_TITLE
-    CSS_PATH = STYLES_PATH 
+    CSS_PATH = STYLES_PATH
 
     BINDINGS = [
         Binding(

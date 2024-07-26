@@ -1,6 +1,5 @@
 from functools import partial
 from pathlib import Path
-from typing import Self
 
 from textual import on
 from textual.app import ComposeResult
@@ -9,6 +8,7 @@ from textual.message import Message
 from textual.reactive import reactive
 from textual.widget import Widget
 from textual.widgets import Button, Input, Label
+from typing_extensions import Self
 
 from ignori.ignore_file import IgnoreFile
 from ignori.screens.modals.confirm_modal import ConfirmModal
@@ -118,7 +118,7 @@ class GenerationForm(Widget):
     def compose(self: Self) -> ComposeResult:
         with Horizontal():
             yield Label("Language:", classes="label")
-            yield LanguageBadge().data_bind(
+            yield LanguageBadge(id="language-badge").data_bind(
                 language_selected=GenerationForm.selected_ignore_file,
             )
         with Horizontal(id="path-form-container"):
