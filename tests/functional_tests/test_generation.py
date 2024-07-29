@@ -11,9 +11,11 @@ from ignori.widgets.language_list import LanguageList
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("language", ["Python", "Java", "Kotlin"])
-async def test_language_selection(language: str) -> None:
+async def test_language_selection(language: str, data_dir: Path) -> None:
     app = IgnoriApp()
     async with app.run_test() as pilot:
+        ignore_file = IgnoreFile(data_dir / "unit_tests" / f"{language}.gitignore")
+
         search_input = pilot.app.query_one("#search-input", expect_type=BorderlessInput)
         search_input.focus()
         await pilot.press(*language)
@@ -25,9 +27,12 @@ async def test_language_selection(language: str) -> None:
         )
         language_list.focus()
 
-        # FIXME: Improve option selection to be independent of the list order
-        await pilot.press("down")
-        await pilot.press("enter")
+        for index in range(language_list.option_count):
+            option = language_list.get_option_at_index(index)
+
+            await pilot.press("down")
+            if option.id == ignore_file.id:
+                await pilot.press("enter")
 
         language_badge: LanguageBadge = pilot.app.query_one(
             "#language-badge",
