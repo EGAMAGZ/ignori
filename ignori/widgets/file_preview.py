@@ -1,10 +1,9 @@
-from typing import Self
-
 from rich.syntax import Syntax
 from textual.app import ComposeResult
 from textual.containers import VerticalScroll
 from textual.reactive import reactive
 from textual.widgets import Static
+from typing_extensions import Self
 
 from ignori.ignore_file import IgnoreFile
 

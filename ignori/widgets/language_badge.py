@@ -1,11 +1,11 @@
-from typing import Self
-
-from textual.app import ComposeResult, events, on
+from textual import events, on
+from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal
 from textual.message import Message
 from textual.reactive import reactive
 from textual.widgets import Label
+from typing_extensions import Self
 
 from ignori.ignore_file import IgnoreFile
 

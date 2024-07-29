@@ -16,7 +16,7 @@ from ignori.widgets.search_form import SearchForm
 
 class IgnoriApp(App[None], inherit_bindings=False):
     TITLE = APP_TITLE
-    CSS_PATH = STYLES_PATH
+    CSS_PATH = STYLES_PATH  # type: ignore
 
     BINDINGS = [
         Binding(
