@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ignori"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
 readme = "README.md"
@@ -9,10 +9,6 @@ readme = "README.md"
 python = "^3.12"
 textual = "^0.73.0"
 rich = "^13.7.1"
-pipe = "^2.2"
-tox = "^4.16.0"
-pytest = "^8.2.2"
-
 
 [tool.poetry.group.dev.dependencies]
 textual-dev = "^1.5.1"
@@ -24,6 +20,7 @@ ruff-lsp = "^0.0.54"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.2.2"
 pytest-asyncio = "^0.23.8"
+tox = "^4.16.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -34,7 +31,7 @@ line-length = 88
 indent-width = 4
 target-version = "py310"
 
-exclude = [".git", "__pycache__", "styles", ".vscode"]
+exclude = [".git", "__pycache__", "styles", ".vscode", ".github"]
 
 [tool.ruff.lint]
 select = [
