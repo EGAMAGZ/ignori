@@ -20,7 +20,9 @@ ruff-lsp = "^0.0.54"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.2.2"
 pytest-asyncio = "^0.23.8"
+tox-gh-actions = "^3.2.0"
 tox = "^4.16.0"
+
 
 [build-system]
 requires = ["poetry-core"]
