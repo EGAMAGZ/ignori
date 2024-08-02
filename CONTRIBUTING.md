@@ -21,7 +21,7 @@ Please put a meaningful commit message following the specification of [Conventio
 
 If you make a pull request and a unit test or functional test fails, please correct the problem and add it to the pull request.
 
-**Note:**
+### **Note**
 
 * If your changes modify existing functions, you may need to edit the test itself to reflect them.
 * If you are adding a new function, please add unit tests or functional tests and confirm that they pass as well.
