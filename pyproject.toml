@@ -32,8 +32,8 @@ classifiers = [
 	"Typing :: Typed",
 ]
 
-exclude = ["tests", "assets", "CONTRIBUTING.md"]
-include = ["LICENSE", "styles", "templates", "README.md"]
+exclude = ["tests", "CONTRIBUTING.md"]
+include = ["LICENSE", "styles", "templates", "README.md", "assets"]
 
 
 [tool.poetry.dependencies]
