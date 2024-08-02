@@ -47,3 +47,12 @@ class IgnoriApp(App[None], inherit_bindings=False):
             yield SearchForm()
             yield GenerationForm().data_bind(IgnoriApp.selected_ignore_file)
         yield Footer()
+
+
+def main() -> None:
+    app = IgnoriApp()
+    app.run()
+
+
+if __name__ == "__main__":
+    main()
