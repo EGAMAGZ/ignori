@@ -1,16 +1,5 @@
-import tomllib
+from importlib.metadata import version
 from pathlib import Path
-
-
-def get_version() -> str:
-    file_path = BASE_DIR / "pyproject.toml"
-
-    with file_path.open("rb") as file:
-        pyproject_data = tomllib.load(file)
-
-    version: str = pyproject_data["tool"]["poetry"]["version"]
-    return version
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -26,6 +15,6 @@ TEMPLATES_PATH = BASE_DIR / "templates"
 
 APP_TITLE = "Ignori"
 
-APP_VERSION = get_version()
+APP_VERSION = version("ignori")
 
 DEFAULT_OUTPUT_FILE = ".gitignore"
