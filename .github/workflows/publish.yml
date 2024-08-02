@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
       - name: Install dependencies
-        run: poetry install --no-root --without dev test
+        run: poetry install --no-root --without dev,test
       - name: Publish to Pipy
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
