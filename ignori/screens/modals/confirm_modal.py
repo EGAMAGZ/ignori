@@ -1,9 +1,10 @@
+from typing import Self
+
 from textual import on
 from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
 from textual.screen import ModalScreen
 from textual.widgets import Button, Label
-from typing_extensions import Self
 
 
 class ConfirmModal(ModalScreen[bool]):

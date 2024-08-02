@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from itertools import cycle
 from pathlib import Path
+from typing import Self
 
 from rich.console import Console, ConsoleOptions, RenderResult
-from typing_extensions import Self
 
 
 @dataclass

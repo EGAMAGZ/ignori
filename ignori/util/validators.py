@@ -1,7 +1,7 @@
 from pathlib import Path
+from typing import Self
 
 from textual.validation import ValidationResult, Validator
-from typing_extensions import Self
 
 
 class PathValidator(Validator):

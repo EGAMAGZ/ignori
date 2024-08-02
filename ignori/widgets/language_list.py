@@ -1,6 +1,7 @@
+from typing import Self
+
 from textual.binding import Binding
 from textual.widgets import OptionList
-from typing_extensions import Self
 
 from ignori.screens.modals.info_modal import InfoModal
 from ignori.util.explorer import open_file_explorer

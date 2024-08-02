@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Self
 
 from textual import on
 from textual.app import ComposeResult
@@ -7,7 +8,6 @@ from textual.message import Message
 from textual.reactive import reactive
 from textual.widgets import Button, Input, OptionList
 from textual.widgets.option_list import Option
-from typing_extensions import Self
 
 from ignori.ignore_file import IgnoreFile, get_option_by_id
 from ignori.util.file import get_gitignore_templates
