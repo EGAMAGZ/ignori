@@ -1,0 +1,119 @@
+BorderlessInput {
+	border: none;
+	width: 1fr;
+	height: 1;
+
+	&:focus {
+	    border: none !important;
+	    height: 1 !important;
+	}
+
+	& > .input--cursor {
+	    color: $text;
+	    background: $accent-lighten-2;
+	}
+
+	&.-invalid {
+	    border: none !important;
+	    height: 1;
+	    background: red 10%;
+	    color: $text;
+	}
+}
+
+LanguageList {
+	border: round $accent 20%;
+	background: transparent;
+
+	&:focus {
+		border: round $accent;
+	}
+}
+
+FilePreview {
+    height: 100%;
+    background: $boost;
+    overflow-x: hidden;
+    border: round $accent 20%;
+    background: transparent;
+    padding: 0 1;
+}
+
+FilePreview:focus {
+	border: round $accent;
+}
+
+GenerationForm {
+    padding: 1;
+    & Horizontal {
+        height: 1;
+        & .label {
+            padding: 0 1;
+            background: $primary-darken-3;
+        }
+    }
+}
+
+LanguageBadge {
+    height: 1;
+    width: auto;
+    background: $secondary-darken-3;
+
+    &.no-language{
+        background: $secondary-background;
+        & #icon {
+            display: none;
+        }
+    }
+
+    & #icon {
+        padding: 0 1;
+        background: $secondary;
+        color: $text;
+    }
+
+    & #language-name {
+        color: $text;
+        min-width: 10;
+        padding: 0 1;
+    }
+}
+
+LanguageBadge:focus {
+    &.no-language {
+        background: $secondary-darken-3;
+    }
+
+    & #icon {
+        background: white;
+        color: $text;
+        text-style: bold;
+    }
+}
+
+SearchForm {
+    width: 100%;
+	padding: 0 1;
+
+    & #search-container{
+        height: 1;
+
+        & #search-input {
+            width: 1fr;
+        }
+
+        & #search-button {
+            width: auto;
+        }
+    }
+
+    & #ignore-container{
+        & OptionList {
+            width: 1fr;
+            height:100%;
+        }
+        & #ignore-code{
+            width: 1fr !important;
+        }
+    }
+}

@@ -1,15 +1,122 @@
 [tool.poetry]
 name = "ignori"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
+maintainers = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
 readme = "README.md"
+repository = "https://github.com/EGAMAGZ/ignori"
+homepage = "https://github.com/EGAMAGZ/ignori"
+license = "MIT"
+keywords = [
+	"gitignore-generator",
+	"generator",
+	"ignori",
+	"tui",
+	"textual",
+	"textualize",
+	"developer-tool",
+	"tool",
+]
+classifiers = [
+	'License :: OSI Approved :: MIT License',
+	"Development Status :: 5 - Production/Stable",
+	"Environment :: Console",
+	"Environment :: Console :: Curses",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Operating System :: OS Independent",
+	"Topic :: Software Development",
+	"Topic :: Software Development :: Code Generators",
+	"Topic :: Software Development :: Version Control :: Git",
+	"Typing :: Typed",
+]
+
+exclude = ["tests", "assets", "CONTRIBUTING.md"]
+include = ["LICENSE", "styles", "templates", "README.md"]
+
 
 [tool.poetry.dependencies]
-python = "^3.12"
-textual = "^0.60.1"
+python = ">=3.11,<4.0.0"
+textual = "^0.73.0"
+rich = "^13.7.1"
+
+[tool.poetry.scripts]
+ignori = "ignori.app:main"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/EGAMAGZ/ignori/issues"
+
+[tool.poetry.group.dev.dependencies]
+textual-dev = "^1.5.1"
+ruff = "^0.5.4"
+mypy = "^1.10.0"
+ruff-lsp = "^0.0.54"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.8"
+tox-gh-actions = "^3.2.0"
+tox = "^4.16.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+
+exclude = [".git", "__pycache__", "styles", ".vscode", ".github"]
+
+[tool.ruff.lint]
+select = [
+	"F",
+	"E",
+	"W",
+	"N",
+	"UP",
+	"ANN",
+	"BLE",
+	"A",
+	"COM",
+	"C4",
+	"DTZ",
+	"Q",
+	"SLF",
+	"SIM",
+	"PTH",
+	"I",
+]
+ignore = []
+
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+
+[tool.mypy]
+python_version = "3.11"
+
+check_untyped_defs = true
+
+ignore_missing_imports = true
+no_implicit_optional = true
+strict_equality = true
+
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+no_implicit_reexport = true
+allow_redefinition = true
+
+show_error_codes = true

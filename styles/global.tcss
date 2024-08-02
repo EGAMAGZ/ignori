@@ -1,0 +1,49 @@
+# $primary: #F35530;
+# $secondary: #F3AE9B;
+# $background: #000000;
+# $panel: #000000;
+# $accent: #F35530;
+
+$error: #EE678E;
+$warning: #F6D661;
+$success: #66EAC6;
+
+* {
+    box-sizing: border-box;
+}
+
+#container {
+    & SearchForm {
+        height: 1fr;
+    }
+
+    & GenerationForm {
+        height: auto;
+    }
+}
+
+Header {
+    height: 1;
+    margin-bottom: 1;
+    padding: 0 2;
+    margin: 1 0;
+
+    & #app-title {
+        width: auto;
+        content-align: left middle;
+        color: $text;
+        background: $primary;
+        padding: 0 1;
+    }
+
+    & #app-version {
+        content-align: right middle;
+        color: $text 40%;
+        text-style: italic;
+        width:1fr;
+    }
+}
+
+.muted-text {
+    color: $text 20%;
+}
