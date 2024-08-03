@@ -2,6 +2,8 @@ from pathlib import Path
 
 import pytest
 
+from ignori.util.settings import TEMPLATES_PATH
+
 
 @pytest.fixture
 def data_dir() -> Path:
@@ -11,8 +13,7 @@ def data_dir() -> Path:
 
 @pytest.fixture
 def templates_dir() -> Path:
-    test_dir = Path(__file__)
-    return test_dir.parent.parent / "templates"
+    return TEMPLATES_PATH
 
 
 @pytest.fixture(scope="module")

@@ -26,7 +26,7 @@ jobs:
           pip install poetry 
           poetry install
       - name: Run Ruff
-        run: poetry run ruff check
+        run: poetry run ruff check --output-format=github
   check-typing:
     runs-on: ${{ matrix.os }}
     strategy:

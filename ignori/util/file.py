@@ -30,6 +30,7 @@ def __get_files(template_subpath: Path, categories: list[str]) -> list[IgnoreFil
 
 
 def get_gitignore_templates(templates_path: Path = TEMPLATES_PATH) -> list[IgnoreFile]:
+    print(templates_path)
     template_files: list[IgnoreFile] = []
     current_categories: list[str] = []
 
