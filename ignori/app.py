@@ -8,7 +8,7 @@ from textual.reactive import reactive
 from textual.widgets import Footer
 
 from ignori.ignore_file import IgnoreFile
-from ignori.util.settings import APP_TITLE, STYLES_PATH
+from ignori.util.settings import APP_TITLE, STYLES
 from ignori.widgets.generation_form import GenerationForm
 from ignori.widgets.header import Header
 from ignori.widgets.language_badge import LanguageBadge
@@ -17,7 +17,7 @@ from ignori.widgets.search_form import SearchForm
 
 class IgnoriApp(App[None], inherit_bindings=False):
     TITLE = APP_TITLE
-    CSS_PATH = STYLES_PATH  # type: ignore
+    CSS_PATH = STYLES  # type: ignore
 
     BINDINGS = [
         Binding(

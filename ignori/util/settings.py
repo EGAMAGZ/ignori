@@ -1,17 +1,16 @@
 from importlib.metadata import version
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from ignori.util.resources import get_path_from_resource_dir
 
-STYLES_DIR = BASE_DIR / "styles"
+STYLES_DIR = get_path_from_resource_dir("styles")
 
-STYLES_PATH = [
+STYLES = [
     STYLES_DIR / "global.tcss",
     STYLES_DIR / "widgets.tcss",
     STYLES_DIR / "modals.tcss",
 ]
 
-TEMPLATES_PATH = BASE_DIR / "templates"
+TEMPLATES_PATH = get_path_from_resource_dir("templates")
 
 APP_TITLE = "Ignori"
 
