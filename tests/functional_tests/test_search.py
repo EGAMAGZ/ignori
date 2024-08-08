@@ -1,8 +1,8 @@
 import pytest
+from textual.widgets import Input
 
 from ignori.app import IgnoriApp
 from ignori.util.file import get_gitignore_templates
-from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_list import LanguageList
 
 
@@ -10,7 +10,7 @@ from ignori.widgets.language_list import LanguageList
 async def test_empty_search() -> None:
     app = IgnoriApp()
     async with app.run_test() as pilot:
-        search_input = pilot.app.query_one("#search-input", expect_type=BorderlessInput)
+        search_input = pilot.app.query_one("#search-input", expect_type=Input)
         search_input.focus()
         await pilot.click("#search-button")
 
@@ -26,7 +26,7 @@ async def test_empty_search() -> None:
 async def test_languages_search(language: str, option_count: int) -> None:
     app = IgnoriApp()
     async with app.run_test() as pilot:
-        search_input = pilot.app.query_one("#search-input", expect_type=BorderlessInput)
+        search_input = pilot.app.query_one("#search-input", expect_type=Input)
         search_input.focus()
         await pilot.press(*language)
         await pilot.click("#search-button")
@@ -46,7 +46,7 @@ async def test_search_with_different_capitalization(
 ) -> None:
     app = IgnoriApp()
     async with app.run_test() as pilot:
-        search_input = pilot.app.query_one("#search-input", expect_type=BorderlessInput)
+        search_input = pilot.app.query_one("#search-input", expect_type=Input)
         search_input.focus()
         await pilot.press(*language)
         await pilot.click("#search-button")

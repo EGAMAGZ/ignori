@@ -1,4 +1,4 @@
-BorderlessInput {
+Input {
 	border: none;
 	width: 1fr;
 	height: 1;
