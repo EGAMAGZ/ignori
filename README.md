@@ -8,6 +8,9 @@
 
 Generate .gitignore file without leaving the terminal.
 
+![Ignori screenshot](./assets/ignori_screenshoot.png "Ignori Screenshot")
+Ignori was built with [Textual](https://github.com/textualize/textual)
+
 ## Installation
 To install `ignori`, it is recommended to use pip:
 ```shell
@@ -22,12 +25,10 @@ pip install .
 ```
 
 ## Usage
+To start the app, run:
 ```shell
 ignori
 ```
-
-![Ignori screenshot](./assets/ignori_screenshoot.png "Ignori Screenshot")
-Ignori was built with [Textual](https://github.com/textualize/textual)
 
 ## Why?
 
