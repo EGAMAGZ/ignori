@@ -7,6 +7,25 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 Generate .gitignore file without leaving the terminal.
+
+## Installation
+To install `ignori`, it is recommended to use pip:
+```shell
+pip install ignori
+```
+
+You can install it from source. Clone this repository and use pip to install:
+```shell
+git clone https://github.com/EGAMAGZ/ignori.git
+cd ignori
+pip install .
+```
+
+## Usage
+```shell
+ignori
+```
+
 ![Ignori screenshot](./assets/ignori_screenshoot.png "Ignori Screenshot")
 Ignori was built with [Textual](https://github.com/textualize/textual)
 
