@@ -12,12 +12,15 @@ Generate .gitignore file without leaving the terminal.
 Ignori was built with [Textual](https://github.com/textualize/textual)
 
 ## Installation
+
 To install `ignori`, it is recommended to use pip:
+
 ```shell
 pip install ignori
 ```
 
 You can install it from source. Clone this repository and use pip to install:
+
 ```shell
 git clone https://github.com/EGAMAGZ/ignori.git
 cd ignori
@@ -25,7 +28,9 @@ pip install .
 ```
 
 ## Usage
+
 To start the app, run:
+
 ```shell
 ignori
 ```
