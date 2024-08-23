@@ -77,7 +77,7 @@ class GenerationForm(Widget):
 
     def validate_generation(self: Self, source_file: Path, output_path: Path) -> None:
         def handle_confirm(
-            response: bool,
+            response: bool | None,
             source_file: Path,
             output_file: Path,
         ) -> None:
