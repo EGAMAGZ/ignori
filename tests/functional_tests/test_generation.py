@@ -2,10 +2,10 @@ from pathlib import Path
 
 import pytest
 from textual.notifications import Notification, Notifications
+from textual.widgets import Input
 
 from ignori.app import IgnoriApp
 from ignori.ignore_file import IgnoreFile
-from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_badge import LanguageBadge
 from ignori.widgets.language_list import LanguageList
 
@@ -17,7 +17,7 @@ async def test_language_selection(language: str, data_dir: Path) -> None:
     async with app.run_test() as pilot:
         ignore_file = IgnoreFile(data_dir / "unit_tests" / f"{language}.gitignore")
 
-        search_input = pilot.app.query_one("#search-input", expect_type=BorderlessInput)
+        search_input = pilot.app.query_one("#search-input", expect_type=Input)
         search_input.focus()
         await pilot.press(*language)
         await pilot.click("#search-button")
@@ -62,7 +62,7 @@ async def test_language_selection_and_unselection(
 
             search_input = pilot.app.query_one(
                 "#search-input",
-                expect_type=BorderlessInput,
+                expect_type=Input,
             )
             search_input.clear()
             search_input.focus()
@@ -97,13 +97,13 @@ async def test_language_selection_and_unselection(
 async def test_generation_without_language_selection(path: str) -> None:
     app = IgnoriApp()
     async with app.run_test() as pilot:
-        path_input = pilot.app.query_one("#path-input", expect_type=BorderlessInput)
+        path_input = pilot.app.query_one("#path-input", expect_type=Input)
         path_input.focus()
 
         await pilot.press(*path)
         await pilot.click("#path-button")
 
-        path_input = pilot.app.query_one("#path-input", expect_type=BorderlessInput)
+        path_input = pilot.app.query_one("#path-input", expect_type=Input)
 
         notifications: Notifications = pilot.app._notifications  # noqa
 
@@ -155,7 +155,7 @@ async def test_ignore_generation(
 
         search_input = pilot.app.query_one(
             "#search-input",
-            expect_type=BorderlessInput,
+            expect_type=Input,
         )
         search_input.focus()
         await pilot.press(*language)
@@ -174,13 +174,13 @@ async def test_ignore_generation(
             if option.id == ignore_file.id:
                 await pilot.press("enter")
 
-        path_input = pilot.app.query_one("#path-input", expect_type=BorderlessInput)
+        path_input = pilot.app.query_one("#path-input", expect_type=Input)
         path_input.focus()
 
         await pilot.press(*generated_file_dir)
         await pilot.click("#path-button")
 
-        path_input = pilot.app.query_one("#path-input", expect_type=BorderlessInput)
+        path_input = pilot.app.query_one("#path-input", expect_type=Input)
 
         assert path_input.is_valid
         assert generated_file.read_text() == source_file.read_text()

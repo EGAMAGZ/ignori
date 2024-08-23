@@ -1,4 +1,26 @@
-BorderlessInput {
+Header {
+    height: 1;
+    margin-bottom: 1;
+    padding: 0 2;
+    margin: 1 0;
+
+    & #app-title {
+        width: auto;
+        content-align: left middle;
+        color: $text;
+        background: $primary;
+        padding: 0 1;
+    }
+
+    & #app-version {
+        content-align: right middle;
+        color: $text 40%;
+        text-style: italic;
+        width:1fr;
+    }
+}
+
+Input {
 	border: none;
 	width: 1fr;
 	height: 1;

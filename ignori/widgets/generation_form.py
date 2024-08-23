@@ -15,7 +15,6 @@ from ignori.screens.modals.confirm_modal import ConfirmModal
 from ignori.util.file import copy_file_content
 from ignori.util.settings import DEFAULT_OUTPUT_FILE
 from ignori.util.validators import PathValidator
-from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_badge import LanguageBadge
 
 
@@ -123,7 +122,7 @@ class GenerationForm(Widget):
             )
         with Horizontal(id="path-form-container"):
             yield Label("Output:", classes="label")
-            yield BorderlessInput(
+            yield Input(
                 id="path-input",
                 placeholder=f"{Path.cwd()}",
                 type="text",
