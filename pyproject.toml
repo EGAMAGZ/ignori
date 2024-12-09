@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ignori"
-version = "1.0.4"
+version = "1.1.0"
 description = "Generate .gitignore file without leaving the terminal."
 authors = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
 maintainers = ["Gamaliel Garcia <46827955+EGAMAGZ@users.noreply.github.com>"]
@@ -25,6 +25,7 @@ classifiers = [
 	"Environment :: Console :: Curses",
 	"Programming Language :: Python :: 3.11",
 	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
 	"Operating System :: OS Independent",
 	"Topic :: Software Development",
 	"Topic :: Software Development :: Code Generators",
