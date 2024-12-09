@@ -12,7 +12,6 @@ from textual.widgets.option_list import Option
 from ignori.ignore_file import IgnoreFile, get_option_by_id
 from ignori.util.file import get_gitignore_templates
 from ignori.widgets.file_preview import FilePreview
-from ignori.widgets.input import BorderlessInput
 from ignori.widgets.language_list import LanguageList
 
 
@@ -99,7 +98,7 @@ class SearchForm(Container):
 
     def compose(self: Self) -> ComposeResult:
         with Horizontal(id="search-container"):
-            yield BorderlessInput(
+            yield Input(
                 placeholder="Language...",
                 type="text",
                 id="search-input",
